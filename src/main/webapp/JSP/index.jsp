@@ -6,7 +6,7 @@
 <body>
 <%@ include file="fragments/navbar.jsp" %>
 
-<h1>Welcome</h1>
+<h1>Welcome to Grit Academy Portal</h1>
 
 <%@ include file="fragments/footer.jsp" %>
 
