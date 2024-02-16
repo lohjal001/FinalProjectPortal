@@ -8,5 +8,5 @@
         <option value="Student">Student</option>
         <option value="Teacher">Teacher</option>
     </select>
-    <input type="submit" id="loginForm" name="LogInForm">
+    <input type="submit" id="userLog" name="LogInForm">
 </form>

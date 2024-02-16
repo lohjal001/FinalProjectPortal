@@ -6,6 +6,11 @@
 <body>
 <%@ include file="fragments/navbar.jsp" %>
 
+<main>
+    <%@ include file="fragments/loginForm.jsp" %>
+
+</main>
+
 <%@ include file="fragments/footer.jsp" %>
 
 </body>

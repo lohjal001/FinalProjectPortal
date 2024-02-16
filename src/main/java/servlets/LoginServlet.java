@@ -34,7 +34,7 @@ public class LoginServlet extends HttpServlet {
             List data = MySQLConnector.getConnector().selectQuery("studentLogin",username,password);
             if(!data.isEmpty())resp.getWriter().print("Logged in!");
             UserBean userBean = new UserBean();
-            userBean.setUserPrivilage(UserBean.PRIVILAGE_TYPE.user);
+            //userBean.setUserPrivilage(UserBean.PRIVILAGE_TYPE.user);
 
         } else if (userType.equals("teacher")) {
 

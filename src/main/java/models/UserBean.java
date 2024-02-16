@@ -1,6 +1,8 @@
 package models;
 
 import java.io.Serializable;
+import java.util.LinkedList;
+import java.util.List;
 
 //userbean represents the connector
 public class UserBean implements Serializable {
@@ -62,5 +64,15 @@ public class UserBean implements Serializable {
     enum USER_PRIVILAGE{
         anonymous,
         confirmed
+    }
+
+    List<String[]> data = null;
+
+    public LinkedList getData() {
+        return (LinkedList) this.data;
+    }
+
+    public void setData(LinkedList data) {
+        this.data = data;
     }
 }
