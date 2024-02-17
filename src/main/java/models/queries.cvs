@@ -1,0 +1,1 @@
+loginStudent;SELECT * FROM students WHERE username = '?' AND password = '?';gritacademy;localhost;4306;root;""
