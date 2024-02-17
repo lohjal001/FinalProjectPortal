@@ -22,3 +22,10 @@ public class UserPageServlet extends HttpServlet {
 
     }
 }
+
+/*
+Userpage servlet should contain
+- Student user connected to JSP file with student courses
+- Teacher user connected to JSP file courses/students/student courses/teacher courses
+- Teacher admin connected to JSP file with all tables and CRUD privilages on everything
+ */
