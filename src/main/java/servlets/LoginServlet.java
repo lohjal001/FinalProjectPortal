@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 
 @WebServlet(urlPatterns = "/login")
@@ -35,6 +34,8 @@ public class LoginServlet extends HttpServlet {
         //jämför data med databas student o teacher  //FUNKAR NU
         if (userType.equals("Student")) {
             List<String[]> data = MySQLConnector.getConnector().selectQuery("loginStudent", username, password);
+
+
             if (!data.isEmpty()) resp.getWriter().print("Logged in as student!");
             req.getRequestDispatcher("JSP/fragments/student/studentUserPage.jsp").forward(req,resp);
             //should we send this straight to the JSP file or should it go to userPage serlvet?
@@ -45,9 +46,23 @@ public class LoginServlet extends HttpServlet {
             UserBean userBean = new UserBean();
             //userBean.setUserPrivilage(UserBean.PRIVILAGE_TYPE.user);
 
-        } else if (userType.equals("teacher")) {
+        } else if (userType.equals("Teacher")) {
             List<String[]> data = MySQLConnector.getConnector().selectQuery("loginTeacher", username, password);
-            if (!data.isEmpty()) resp.getWriter().print("Logged in as teacher!");
+            if (data.size() > 1) // for some reason the data is not comparing to the database and anyone can log in
+                resp.getWriter().print("Logged in as teacher!");
+            req.getRequestDispatcher("JSP/fragments/teacher/teacherUserPage.jsp").forward(req,resp);
+
+            /*
+                //adding for loop to check specifically if username and password are matching //NOPE the data list is not comparing to database here?
+                for (String[] row:data){
+                    String dbusername = row[6];
+                    String dbpassword = row[7];
+
+                    if (username.equals(dbusername) && password.equals(dbpassword)){
+
+             */
+
+
 
 
         } else {
