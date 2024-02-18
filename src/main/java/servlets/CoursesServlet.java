@@ -17,7 +17,7 @@ public class CoursesServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        LinkedList data = MySQLConnector.getConnector().selectQuery("allFromCourses");
+        LinkedList data = MySQLConnector.getConnector().selectQuery("allCourses");
         UserBean usersBean = new UserBean();
         usersBean.setData(data);
 

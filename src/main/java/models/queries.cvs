@@ -1,1 +1,2 @@
+allCourses; SELECT * FROM courses ORDER BY ID ASC;gritacademy;localhost;4306;userSELECT;user
 loginStudent;SELECT * FROM students WHERE username = '?' AND password = '?';gritacademy;localhost;4306;root;""
