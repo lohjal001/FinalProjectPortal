@@ -1,3 +1,4 @@
 allCourses;SELECT name,points,description FROM courses;gritacademy;localhost;4306;userSELECT;user
-loginStudent;SELECT * FROM students WHERE username = ? AND password = ?;gritacademy;localhost;4306;userSELECT;user
-loginTeacher;SELECT * FROM teachers WHERE username = 'lukas' AND password = 'lukas'';gritacademy;localhost;4306;userSELECT;user
+loginStudent;SELECT username,password FROM students WHERE username = ? AND password = ?;gritacademy;localhost;4306;userSELECT;user
+loginTeacher;SELECT username,password FROM teachers WHERE username = 'lukas' AND password = 'lukas'';gritacademy;localhost;4306;userSELECT;user
+teacherLogin;Select * FROM teachers t WHERE t.username='{0}' AND t.password='{1}';gritacademy;localhost;4306;userSELECT;user

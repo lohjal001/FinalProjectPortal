@@ -1,5 +1,7 @@
 package servlets;
 
+import models.UserBean;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,6 +21,7 @@ public class UserPageServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        UserBean userBean = (UserBean)req.getSession().getAttribute("userBean");
 
     }
 }
