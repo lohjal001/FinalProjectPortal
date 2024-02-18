@@ -1,0 +1,2 @@
+allCourses;SELECT name,points,description FROM courses;gritacademy;localhost;4306;userSELECT;user
+loginStudent;SELECT * FROM students WHERE username = '?' AND password = '?';gritacademy;localhost;4306;userSELECT;user

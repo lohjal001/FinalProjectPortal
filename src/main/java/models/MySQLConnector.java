@@ -74,6 +74,7 @@ public class MySQLConnector {
         return queryReturn;
     }
 
+    //this code is query for INSERT so onlu for privalage-type admin
     public boolean insertQuery(String queryName, String... args) throws NullPointerException{
         try(BufferedReader br = new BufferedReader(new FileReader(queriesPath))) {
             String query = br.readLine();

@@ -5,6 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 //userbean represents the connector
+//user bean is transfering data between servlets
 public class UserBean implements Serializable {
 
     private USER_TYPE userType = USER_TYPE.student;
@@ -66,6 +67,9 @@ public class UserBean implements Serializable {
         confirmed
     }
 
+
+
+    //does this data list store whatever data we ask? ex courses
     List<String[]> data = null;
 
     public LinkedList getData() {

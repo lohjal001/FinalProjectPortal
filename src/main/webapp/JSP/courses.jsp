@@ -15,15 +15,24 @@
 <body>
 <%@ include file="fragments/navbar.jsp" %>
 
+ <table>
+        <thead>
+            <tr>
+                <th>Course</th>
+                <th>Points</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
 
 <c:forEach items="${UserBean.data }" var="dataPunkt">
     <tr>
+        <td>${dataPunkt[0]}</td>
         <td>${dataPunkt[1]}</td>
         <td>${dataPunkt[2]}</td>
-        <td>${dataPunkt[3]}</td>
-        <td>${dataPunkt[4]}</td>
     </tr>
 </c:forEach>
+</body>
 </table>
 
 <%@ include file="fragments/footer.jsp" %>
