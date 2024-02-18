@@ -2,6 +2,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
+<body>
+<p>"heyyyyy"</p>
 <%@ include file="fragments/header.jsp" %>
 <body>
 <%@ include file="fragments/navbar.jsp" %>

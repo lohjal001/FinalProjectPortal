@@ -69,7 +69,7 @@ public class UserBean implements Serializable {
 
 
 
-    //does this data list store whatever data we ask? ex courses
+    //empty data list that are being used to store data from servlets requests
     List<String[]> data = null;
 
     public LinkedList getData() {

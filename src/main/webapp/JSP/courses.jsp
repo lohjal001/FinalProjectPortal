@@ -25,11 +25,11 @@
         </thead>
         <tbody>
 
-<c:forEach items="${UserBean.data }" var="dataPunkt">
+<c:forEach items="${UserBean.data }" var="dataPoint">
     <tr>
-        <td>${dataPunkt[0]}</td>
-        <td>${dataPunkt[1]}</td>
-        <td>${dataPunkt[2]}</td>
+        <td>${dataPoint[0]}</td>
+        <td>${dataPoint[1]}</td>
+        <td>${dataPoint[2]}</td>
     </tr>
 </c:forEach>
 </body>
