@@ -1,15 +1,15 @@
 <footer>
+<div class='navbar'>
+
     <nav>
-        <ul>
-            <li><a href="/">HOME</a></li>
-            <li><a href="/courses">COURSES</a></li>
-            <li><a href="/login">LOGIN</a></li>
-            <li><a href="/register">REGISTER</a></li>
-            <li><a href="/userPage">USERPAGE</a></li>
-        </ul>
+
+            <a href="/">HOME</a>
+            <a href="/courses">COURSES</a>
+            <a href="/login">LOGIN</a>
+            <a href="/register">REGISTER</a>
+            <a href="/userPage">USERPAGE</a>
+
 
     </nav>
-    <banner>
-        <img alt="banner image" />
-    </banner>
+</div>
 </footer>

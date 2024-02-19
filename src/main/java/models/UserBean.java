@@ -5,11 +5,12 @@ import java.util.LinkedList;
 import java.util.List;
 
 //userbean represents the connector
+//user bean is transfering data between servlets
 public class UserBean implements Serializable {
 
     private USER_TYPE userType = USER_TYPE.student;
 
-    private USER_PRIVILAGE userPrivilage = USER_PRIVILAGE.anonymous;
+    private STATE_TYPE stateType = STATE_TYPE.anonymous;
 
     private PRIVILAGE_TYPE privilageType = PRIVILAGE_TYPE.user;
 
@@ -21,12 +22,12 @@ public class UserBean implements Serializable {
         this.privilageType = privilageType;
     }
 
-    public USER_PRIVILAGE getUserPrivilage() {
-        return userPrivilage;
+    public STATE_TYPE getStateType() {
+        return stateType;
     }
 
-    public void setUserPrivilage(USER_PRIVILAGE userPrivilage) {
-        this.userPrivilage = userPrivilage;
+    public void setStateType(STATE_TYPE stateType) {
+        this.stateType = stateType;
     }
 
     public USER_TYPE getUserType() {
@@ -39,8 +40,20 @@ public class UserBean implements Serializable {
 
     private String myVar = "";
 
-    public UserBean(){}
+    private String ID;
 
+    public UserBean(String ID, USER_TYPE userType, PRIVILAGE_TYPE privilageType, STATE_TYPE stateType){
+        this.ID=ID;
+        this.userType=userType;
+        this.privilageType=privilageType;
+        this.stateType=stateType;
+    }
+    public void setID(String ID) {
+        this.ID = ID;
+    }
+    public String getID() {
+        return ID;
+    }
     public String getMyVar() {
         return myVar;
     }
@@ -49,27 +62,30 @@ public class UserBean implements Serializable {
         this.myVar = myVar;
     }
 
-    enum USER_TYPE{
+    public enum USER_TYPE{
         //vanligtvis all caps i enum men bör matcha databasen i detta fallet
         student,
         teacher
     }
 
-    enum PRIVILAGE_TYPE{
+    public enum PRIVILAGE_TYPE{
         user,
         admin,
         superAdmin
     }
 
-    enum USER_PRIVILAGE{
+    public enum STATE_TYPE{
         anonymous,
         confirmed
     }
 
-    List<String[]> data = null;
+
+
+    //empty data list that are being used to store data from servlets requests
+    LinkedList<String[]> data = null;
 
     public LinkedList getData() {
-        return (LinkedList) this.data;
+        return this.data;
     }
 
     public void setData(LinkedList data) {
