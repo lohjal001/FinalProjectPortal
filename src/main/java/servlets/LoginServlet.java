@@ -46,14 +46,10 @@ public class LoginServlet extends HttpServlet {
 
             //jämför data med databas student o teacher
             if (userType.equals("Student")) {
-                String sqlStudents = "SELECT * FROM students WHERE username= ? AND password= ?";
-                PreparedStatement ps = connection.prepareStatement(sqlStudents);
-                ps.setString(1, username);
-                ps.setString(2, password);
-                ResultSet result = ps.executeQuery();
+                LinkedList<String[]> data = MySQLConnector.getConnector().selectQuery("loginStudent");
 
-                if (result.next() && !username.isEmpty() && !password.isEmpty()) {
-                    studentID = result.getString("id"); // retrieve the student ID from the result
+                if (data.size()>1 && !username.isEmpty() && !password.isEmpty()) {
+                    //studentID = result.getString("id"); // retrieve the student ID from the result
                     //  resp.getWriter().print("Logged in as student!");
 
                     UserBean usersBean = new UserBean(studentID, UserBean.USER_TYPE.student, UserBean.PRIVILAGE_TYPE.user, UserBean.STATE_TYPE.confirmed);
@@ -68,15 +64,12 @@ public class LoginServlet extends HttpServlet {
                     //System.out.println(((UserBean)(req.getSession().getAttribute("UserBean"))).getData());
 
                 } else if (userType.equals("Teacher")) {
-                    String sqlTeachers = "SELECT * FROM teachers WHERE username=? AND password=?";
-                    PreparedStatement ps2 = connection.prepareStatement(sqlTeachers);
-                    ps2.setString(1, username);
-                    ps2.setString(2, password);
-                    ResultSet result2 = ps2.executeQuery();
+                    LinkedList<String[]> dataT = MySQLConnector.getConnector().selectQuery("loginTeacher");
 
-                    if (result2.next() && !username.isEmpty() && !password.isEmpty()) {
+
+                    if (dataT.size()>1 && !username.isEmpty() && !password.isEmpty()) {
                         resp.getWriter().print("Logged in as teacher!");
-                        teacherID = result2.getString("id"); //keep the id in session
+                        //teacherID = result2.getString("id"); //keep the id in session
 
                         UserBean usersBean = new UserBean(teacherID, UserBean.USER_TYPE.student, UserBean.PRIVILAGE_TYPE.user, UserBean.STATE_TYPE.confirmed);
 

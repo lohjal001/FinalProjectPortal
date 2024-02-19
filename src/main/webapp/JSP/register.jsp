@@ -4,9 +4,21 @@
 <link rel="stylesheet" type="text/css" href="/styles.css">
 
 <html>
+<style>
+    body{
+        background-color: #DBDBD1;
+    }
+</style>
+
 <%@ include file="fragments/header.jsp" %>
 <body>
-<%@ include file="fragments/navbar.jsp" %>
+<nav>
+    <div class="banner">
+
+        <%@ include file="fragments/navbar.jsp" %>
+
+    </div>
+</nav>
 
 <%@ include file="fragments/footer.jsp" %>
 

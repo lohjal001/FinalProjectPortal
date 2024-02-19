@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.LinkedList;
 
 //servlets are processing requests and stores the data in java beans variables, servlets forwards request to JSP for presentation, jsp page retrives data from java bean
@@ -22,7 +21,7 @@ public class CoursesServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         try{
-        LinkedList<String[]> data = MySQLConnector.getConnector().selectQuery("allCourses");
+        LinkedList<String[]> data = MySQLConnector.getConnector().selectQuery("allFromCourses");
         UserBean usersBean = new UserBean("", UserBean.USER_TYPE.student, UserBean.PRIVILAGE_TYPE.user, UserBean.STATE_TYPE.anonymous);
         usersBean.setData(data);
         req.getSession().setAttribute("UserBean", usersBean);

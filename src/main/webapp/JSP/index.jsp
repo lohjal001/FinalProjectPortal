@@ -2,15 +2,29 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
+<style>
+    body{
+        background-color: #DBDBD1;
+    }
+    h1{
+        color: black;
+        font-family: "Times New Roman", serif;
+        font-size: xx-large;
+    }
+</style>
+
 <link rel="stylesheet" type="text/css" href="/styles.css">
 
 <%@ include file="fragments/header.jsp" %>
 <body>
-<div class="banner">
+<nav>
+    <div class="banner">
 
-<%@ include file="fragments/navbar.jsp" %>
+        <%@ include file="fragments/navbar.jsp" %>
 
-</div>
+    </div>
+</nav>
+
 
 <h1>Welcome to Grit Academy Portal</h1>
 
