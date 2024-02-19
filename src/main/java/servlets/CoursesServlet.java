@@ -23,7 +23,7 @@ public class CoursesServlet extends HttpServlet {
 
         try{
         LinkedList<String[]> data = MySQLConnector.getConnector().selectQuery("allCourses");
-        UserBean usersBean = new UserBean();
+        UserBean usersBean = new UserBean("", UserBean.USER_TYPE.student, UserBean.PRIVILAGE_TYPE.user, UserBean.STATE_TYPE.anonymous);
         usersBean.setData(data);
         req.getSession().setAttribute("UserBean", usersBean);
         System.out.println(((UserBean)(req.getSession().getAttribute("UserBean"))).getData());

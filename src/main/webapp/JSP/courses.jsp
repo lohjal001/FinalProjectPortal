@@ -1,19 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
+<link rel="stylesheet" type="text/css" href="/styles.css">
+
 <html>
 <%@ include file="fragments/header.jsp" %>
-<style>
-    table {
-        width: 70%;
-        margin: 20px auto;
-        border-collapse: collapse;
-        background-color: #fff;
-        border-radius: 5px;
-    }
-</style>
+
 <body>
 <%@ include file="fragments/navbar.jsp" %>
+
+<div class='bg-white'>
 
  <table>
         <thead>
@@ -24,6 +20,8 @@
             </tr>
         </thead>
         <tbody>
+        </div>
+
 
 <c:forEach items="${UserBean.data }" var="dataPoint">
     <tr>
@@ -34,9 +32,4 @@
 </c:forEach>
 </body>
 </table>
-
-<%@ include file="fragments/footer.jsp" %>
-
-
-</body>
 </html>

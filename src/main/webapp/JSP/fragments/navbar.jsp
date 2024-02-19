@@ -1,8 +1,8 @@
 <navbar>
     <banner>
-        <img alt="banner image" />
+    <div class="banner">
     </banner>
-
+<div class='navbar'>
     <nav>
         <ul>
             <li><a href="/">HOME</a></li>
@@ -13,4 +13,5 @@
         </ul>
 
     </nav>
+    </div></div>
 </navbar>
