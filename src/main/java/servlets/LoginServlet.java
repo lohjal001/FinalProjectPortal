@@ -41,7 +41,7 @@ public class LoginServlet extends HttpServlet {
             String password = req.getParameter("password");
             String userType = req.getParameter("userType");
 
-            UserBean usersBean = new UserBean();
+            //UserBean usersBean = new UserBean();
 
 
             //jämför data med databas student o teacher
@@ -52,13 +52,15 @@ public class LoginServlet extends HttpServlet {
                 ps.setString(2, password);
                 ResultSet result = ps.executeQuery();
 
-                if (result.next() && !username.isEmpty() && !password.isEmpty())
-                {
-                studentID = result.getString("id"); // Retrieve the student ID from the result to set in session
-                  //  resp.getWriter().print("Logged in as student!");
-                    //req.getSession().setMaxInactiveInterval(1);
+                if (result.next() && !username.isEmpty() && !password.isEmpty()) {
+                    studentID = result.getString("id"); // retrieve the student ID from the result
+                    //  resp.getWriter().print("Logged in as student!");
+
+                    UserBean usersBean = new UserBean(studentID, UserBean.USER_TYPE.student, UserBean.PRIVILAGE_TYPE.user, UserBean.STATE_TYPE.confirmed);
+
+                    req.getSession().setMaxInactiveInterval(420);
                     req.getSession().setAttribute("UserBean", usersBean);
-                     req.getSession().setAttribute("studentID", studentID);
+                    req.getSession().setAttribute("studentID", studentID);
 
                     resp.sendRedirect(req.getContextPath() + "/userPage");
 
@@ -66,7 +68,7 @@ public class LoginServlet extends HttpServlet {
                     //System.out.println(((UserBean)(req.getSession().getAttribute("UserBean"))).getData());
 
                 } else if (userType.equals("Teacher")) {
-                    String sqlTeachers = "SELECT * FROM teachers WHERE username="+username+" AND password="+password;
+                    String sqlTeachers = "SELECT * FROM teachers WHERE username=? AND password=?";
                     PreparedStatement ps2 = connection.prepareStatement(sqlTeachers);
                     ps2.setString(1, username);
                     ps2.setString(2, password);
@@ -74,11 +76,13 @@ public class LoginServlet extends HttpServlet {
 
                     if (result2.next() && !username.isEmpty() && !password.isEmpty()) {
                         resp.getWriter().print("Logged in as teacher!");
+                        teacherID = result2.getString("id"); //keep the id in session
+
+                        UserBean usersBean = new UserBean(teacherID, UserBean.USER_TYPE.student, UserBean.PRIVILAGE_TYPE.user, UserBean.STATE_TYPE.confirmed);
 
                         //req.getRequestDispatcher("JSP/fragments/student/teacherUserPage.jsp").forward(req, resp);
                         resp.getWriter().print(username+" "+password+" "+userType);
                         req.getSession().setAttribute("UserBean", usersBean);
-                        teacherID = result2.getString("id"); //keep the id in session
                         resp.sendRedirect(req.getContextPath() + "/userPage");
 
                         //System.out.println(((UserBean)(req.getSession().getAttribute("UserBean"))).getData());
