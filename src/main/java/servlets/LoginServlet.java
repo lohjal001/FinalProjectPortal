@@ -38,6 +38,9 @@ public class LoginServlet extends HttpServlet {
             String password = req.getParameter("password");
             String userType = req.getParameter("userType");
 
+            UserBean usersBean = new UserBean();
+
+
             //jämför data med databas student o teacher
             if (userType.equals("Student")) {
 
@@ -49,8 +52,8 @@ public class LoginServlet extends HttpServlet {
                 ResultSet result = ps.executeQuery();
                 if (result.next() && !username.isEmpty() && !password.isEmpty()) {
                     resp.getWriter().print("Logged in as student!");
-                    req.getRequestDispatcher("JSP/fragments/student/studentUserPage.jsp").forward(req, resp);
-                    UserBean usersBean = new UserBean();
+                    resp.sendRedirect(req.getContextPath() + "/userPage");
+                   // req.getRequestDispatcher("JSP/fragments/student/studentUserPage.jsp").forward(req, resp);
                     req.getSession().setMaxInactiveInterval(1);
                     req.getSession().setAttribute("UserBean", usersBean);                //System.out.println(((UserBean)(req.getSession().getAttribute("UserBean"))).getData());
 
@@ -63,8 +66,12 @@ public class LoginServlet extends HttpServlet {
 
                     if (result2.next() && !username.isEmpty() && !password.isEmpty()) {
                         resp.getWriter().print("Logged in as teacher!");
-                        req.getRequestDispatcher("JSP/fragments/student/teacherUserPage.jsp").forward(req, resp);
+                        resp.sendRedirect(req.getContextPath() + "/userPage");
+
+                        //req.getRequestDispatcher("JSP/fragments/student/teacherUserPage.jsp").forward(req, resp);
                         resp.getWriter().print(username+" "+password+" "+userType);
+                        req.getSession().setAttribute("UserBean", usersBean);                //System.out.println(((UserBean)(req.getSession().getAttribute("UserBean"))).getData());
+
 
                         //req.getSession().setMaxInactiveInterval(1);
 

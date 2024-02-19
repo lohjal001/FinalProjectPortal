@@ -50,7 +50,7 @@ public class UserBean implements Serializable {
         this.myVar = myVar;
     }
 
-    enum USER_TYPE{
+    public enum USER_TYPE{
         //vanligtvis all caps i enum men bör matcha databasen i detta fallet
         student,
         teacher

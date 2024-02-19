@@ -25,11 +25,8 @@ public class CoursesServlet extends HttpServlet {
         LinkedList<String[]> data = MySQLConnector.getConnector().selectQuery("allCourses");
         UserBean usersBean = new UserBean();
         usersBean.setData(data);
-
         req.getSession().setAttribute("UserBean", usersBean);
-
         System.out.println(((UserBean)(req.getSession().getAttribute("UserBean"))).getData());
-
         req.getRequestDispatcher("JSP/courses.jsp").forward(req,resp);
 
 
