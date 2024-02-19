@@ -1,0 +1,1 @@
+allFromCourses; SELECT id, name, points, description FROM courses ORDER BY ID ASC;gritacademy;localhost;4306;user;user
