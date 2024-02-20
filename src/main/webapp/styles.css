@@ -12,14 +12,16 @@ text-align: center; /* Center the text horizontally */
 
 h1 {
 text-align: center;
-color: red;
+color: black;
 }
-
 
 table {
-width: 100%;
+    width: 70%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    background-color: #fff;
+    border-radius: 5px;
 }
-
 
 th, td {
 text-align: center;

@@ -4,22 +4,23 @@
 <link rel="stylesheet" type="text/css" href="/styles.css">
 
 <html>
-<style>
-    body{
-        background-color: #DBDBD1;
-    }
-    table {
-        width: 70%;
-        margin: 20px auto;
-        border-collapse: collapse;
-        background-color: #fff;
-        border-radius: 5px;
-    }
-</style>
-
 <%@ include file="fragments/header.jsp" %>
 
 <body>
+<c:choose>
+    <c:when test="${userBean.userType == 'student' && userBean.stateType == 'confirmed'}">
+        <%@ include file="fragments/student/studentUserPage.jsp" %>
+    </c:when>
+    <c:when test="${userBean.userType == 'teacher' && userBean.privilageType == 'user' && userBean.stateType == 'confirmed'}">
+        <%@ include file="fragments/teacher/teacherUserPage.jsp" %>
+    </c:when>
+    <c:when test="${userBean.userType == 'teacher' && userBean.privilageType == 'admin' && userBean.stateType == 'confirmed'}">
+        <%@ include file="fragments/teacher/teacherAdminPage.jsp" %>
+    </c:when>
+    <c:when test="${userBean.userType == 'teacher' && userBean.privilageType == 'superadmin' && userBean.stateType == 'confirmed'}">
+        <%@ include file="fragments/teacher/teacherSuperadminPage.jsp" %>
+    </c:when>
+</c:choose>
 <nav>
     <div class="banner">
 

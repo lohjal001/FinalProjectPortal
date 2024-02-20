@@ -14,7 +14,10 @@
         border-radius: 5px;
     }
 </style>
-<body>
+<nav>
+
+    <%@ include file="studentNavbar.jsp" %>
+</nav>
 
 <h1>"Student User Page"</h1>
 
@@ -44,11 +47,9 @@
         <td>${dataPoint[6]}</td>
         <td>${dataPoint[7]}</td>
         <td>${dataPoint[8]}</td>
-
-
     </tr>
 </c:forEach>
-</body>
-</table>
+        </tbody>
+ </table>
 </body>
 </html>

@@ -3,12 +3,6 @@
 <!DOCTYPE html>
 <link rel="stylesheet" href="/styles.css">
 
-<html>
-<style>
-    body{
-        background-color: #DBDBD1;
-    }
-</style>
 
 <%@ include file="fragments/header.jsp" %>
 <body>
