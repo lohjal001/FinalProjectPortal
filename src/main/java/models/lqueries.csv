@@ -1,0 +1,2 @@
+allCourses; SELECT name, points, description FROM courses ORDER BY name ASC;gritacademy;localhost;4306;user;user
+studentCourseInfo; c.id, c.name, c.points, c.description, CONCAT(s.fname, ' ', s.lname) AS student_name, CONCAT(t.fname, ' ', t.lname) AS teacher_name FROM courses c JOIN student_course sc ON c.id = sc.id_course JOIN students s ON sc.id_student = s.id JOIN teacher_course tc ON c.id = tc.id_course JOIN teachers t ON tc.id_teacher = t.id where s.id='{0}'ORDER BY c.name ASC;gritacademy;localhost;4306;user;user
