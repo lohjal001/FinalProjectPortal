@@ -1,9 +1,5 @@
 <link rel="stylesheet" href="/styles.css">
 <navbar>
-    <banner>
-    <div class="banner">
-    </div>
-    </banner>
 <div class='navbar'>
     <nav>
         <ul>

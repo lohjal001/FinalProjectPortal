@@ -8,11 +8,10 @@
 <%@ include file="fragments/header.jsp" %>
 <body>
 <nav>
-    <div class="banner">
 
         <%@ include file="fragments/navbar.jsp" %>
 
-    </div>
+
 </nav>
 
 <%@ include file="fragments/footer.jsp" %>

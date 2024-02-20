@@ -22,11 +22,9 @@
     </c:when>
 </c:choose>
 <nav>
-    <div class="banner">
 
         <%@ include file="fragments/navbar.jsp" %>
 
-    </div>
 </nav>
 
 

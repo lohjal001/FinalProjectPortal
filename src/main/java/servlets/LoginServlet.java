@@ -47,7 +47,7 @@ public class LoginServlet extends HttpServlet {
 
 
             //jämför data med databas student o teacher
-            if (userType.equals("Student") && userType != null) {
+            if (userType.equals("Student")) {
                 LinkedList<String[]> data = MySQLConnector.getConnector().selectQuery("loginStudent", username, password);
                 System.out.println("here1");
 
