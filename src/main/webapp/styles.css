@@ -1,13 +1,13 @@
 
 body {
-background-color: #FFE5B4;
+background-color: #5B6658;
 }
 
 .banner {
-background-color: #007bff; /* Change the background color */
-color: #fff; /* Change the text color */
-padding: 20px; /* Adjust the padding as needed */
-text-align: center; /* Center the text horizontally */
+background-color: white;
+color: black;
+padding: 20px;
+text-align: center;
 }
 
 h1 {
@@ -56,22 +56,46 @@ a:hover {
 color: #c79048;
 }
 
+.bg-white {
+margin-top: 5px;
+max-width: 60%;
+margin: auto;
+padding: 20px;
+background-color: white;
+border-radius: 10px;
+box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+position: relative;
+}
 
 .form-container {
-background-color: #fff;
-border-radius: 10px;
-box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-padding: 20px;
-max-width: 400px;
-width: 100%;
-margin:auto;
+border-radius:0px;
+display: flex;
+align-items: center;
+justify-content: center;
+margin: auto;
+width:200px;
+}
+
+
+.form-container input[type='text'] {
+display: block;
+margin-bottom: -10px;
+margin-right: 10px;
+}
+
+input[type=text] {
+padding:10px;
+margin:5px 0;
+margin-bottom: 40;
+border:0;
+box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.3)
 }
 
 input[type=text]:focus {
 background-color: #ebd7be;
 }
 
-.form-container input[type="submit"] {
+input[type="submit"] {
 background-color: #c79048;
 color: #fff;
 padding: 10px 20px;
@@ -93,21 +117,3 @@ background-color: #ebd7be;
 padding:10px;
 border-radius:10px;
 }
-
-label {
-color: #d3d3d3;
-}
-
-.bg-white {
-margin-top: 5px;
-max-width: 60%;
-margin: auto;
-padding: 20px;
-background-color: white;
-border-radius: 10px;
-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-position: relative;
-}
-
-
-
