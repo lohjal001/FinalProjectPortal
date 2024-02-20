@@ -19,14 +19,19 @@ public class CoursesServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        doPost(req, resp);
+    }
 
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try{
-        LinkedList<String[]> data = MySQLConnector.getConnector().selectQuery("allCourses");
-        UserBean usersBean = new UserBean("", UserBean.USER_TYPE.student, UserBean.PRIVILAGE_TYPE.user, UserBean.STATE_TYPE.anonymous);
-        usersBean.setData(data);
-        req.getSession().setAttribute("UserBean", usersBean);
-        System.out.println(((UserBean)(req.getSession().getAttribute("UserBean"))).getData());
-        req.getRequestDispatcher("JSP/courses.jsp").forward(req,resp);
+            LinkedList<String[]> data = MySQLConnector.getConnector().selectQuery("allCourses");
+            UserBean usersBean = new UserBean("", UserBean.USER_TYPE.student, UserBean.PRIVILAGE_TYPE.user, UserBean.STATE_TYPE.anonymous);
+            usersBean.setData(data);
+            //req.setAttribute("data", data);
+            req.getSession().setAttribute("UserBean", usersBean);
+            System.out.println(((UserBean)(req.getSession().getAttribute("UserBean"))).getData());
+            req.getRequestDispatcher("JSP/courses.jsp").forward(req,resp);
 
 
         }catch (Exception e){
@@ -34,13 +39,10 @@ public class CoursesServlet extends HttpServlet {
 
         }
         //error should send to an error page, add error.jsp file
-            //req.setAttribute("error", e.getMessage());
-          //  req.getRequestDispatcher("error.jsp").forward(req, resp);
-
-        }
-
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        //req.setAttribute("error", e.getMessage());
+        //  req.getRequestDispatcher("error.jsp").forward(req, resp);
 
     }
+
 }
+
