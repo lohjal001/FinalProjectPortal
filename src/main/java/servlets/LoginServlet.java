@@ -27,6 +27,8 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.getRequestDispatcher("JSP/login.jsp").forward(req, resp);
+        doPost(req, resp);
+
     } //forwards the request to the JSP file that has the log in form
 
     @Override
@@ -45,20 +47,26 @@ public class LoginServlet extends HttpServlet {
 
 
             //jämför data med databas student o teacher
-            if (userType.equals("Student")) {
-                LinkedList<String[]> data = MySQLConnector.getConnector().selectQuery("loginStudent");
+            if (userType.equals("Student") && userType != null) {
+                LinkedList<String[]> data = MySQLConnector.getConnector().selectQuery("loginStudent", username, password);
+                System.out.println("here1");
 
-                if (data.size()>1 && !username.isEmpty() && !password.isEmpty()) {
-                    //studentID = result.getString("id"); // retrieve the student ID from the result
+                if (data.size()>1) {
+                 //   studentID = result.getString("id"); // retrieve the student ID from the result
                     //  resp.getWriter().print("Logged in as student!");
+                    System.out.println("here2");
 
                     UserBean usersBean = new UserBean(studentID, UserBean.USER_TYPE.student, UserBean.PRIVILAGE_TYPE.user, UserBean.STATE_TYPE.confirmed);
 
-                    req.getSession().setMaxInactiveInterval(420);
+                    usersBean.setData(data);
                     req.getSession().setAttribute("UserBean", usersBean);
                     req.getSession().setAttribute("studentID", studentID);
+                    req.getSession().setMaxInactiveInterval(1);
 
-                    resp.sendRedirect(req.getContextPath() + "/userPage");
+                    System.out.println("here3");
+
+                    req.getRequestDispatcher("/userPage").forward(req,resp);
+                  //  resp.sendRedirect(req.getContextPath() + "/userPage");
 
 
                     //System.out.println(((UserBean)(req.getSession().getAttribute("UserBean"))).getData());
