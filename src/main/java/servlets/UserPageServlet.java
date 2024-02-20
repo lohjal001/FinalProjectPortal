@@ -29,7 +29,7 @@ public class UserPageServlet extends HttpServlet {
             try {
                 UserBean usersBean = (UserBean) req.getSession().getAttribute("UserBean"); //getting the login info saved in bean
 
-                if (usersBean.getUserType().equals(UserBean.USER_TYPE.student)) {
+                if (usersBean.getUserType().equals(UserBean.USER_TYPE.student) && usersBean.getStateType().equals((UserBean.STATE_TYPE.confirmed))) {
                     LinkedList<String[]> data = MySQLConnector.getConnector().selectQuery("studentCourseInfo");
                     req.setAttribute("data", data);
                     req.getSession().setAttribute("UserBean", usersBean);
