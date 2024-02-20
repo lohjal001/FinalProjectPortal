@@ -1,0 +1,10 @@
+allCourses; SELECT name, points, description FROM courses ORDER BY name ASC;gritacademy;localhost;4306;user;user
+loginStudent;SELECT * FROM students WHERE username ='{0}' AND password ='{1}';gritacademy;localhost;4306;user;user
+loginTeacher;SELECT * FROM teachers WHERE username ='{0}' AND password ='{1}';gritacademy;localhost;4306;user;user
+studentCourseInfo;SELECT s.id, s.fname, s.lname, c.name, c.points, c.description, t.fname, t.lname FROM students s JOIN student_course sc ON sc.student_id=s.id JOIN courses c ON c.id=sc.course_id WHERE s.fname='{0}' AND s.lname='{1}' AND s.id='{2}' ORDER BY s.id ASC;gritacademy;localhost;4306;user;user
+EnrolledCoursesOverview;SELECT c.id, c.name, c.points, c.description, CONCAT(s.fname, ' ', s.lname) AS student_name, CONCAT(t.fname, ' ', t.lname) AS teacher_name FROM courses c JOIN student_course sc ON c.id = sc.course_id JOIN students s ON sc.student_id = s.id JOIN teacher_course tc ON c.id = tc.course_id JOIN teachers t ON tc.teacher_id = t.id WHERE s.id='{0}';gritacademy;localhost;4306;user;user
+
+
+teacherCourseInfo;SELECT s.id, s.fname, s.lname, c.id, c.name, c.points, c.description, t.fname AS teacher_fname, t.lname AS teacher_lname FROM student_course sc LEFT JOIN students s ON sc.student_id = s.id LEFT JOIN courses c ON sc.course_id = c.id LEFT JOIN teacher_course tc ON c.id = tc.course_id LEFT JOIN teachers t ON tc.teacher_id = t.id WHERE t.id = ?;gritacademy;localhost;4306;user;user
+
+

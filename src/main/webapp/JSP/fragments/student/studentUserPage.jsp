@@ -5,15 +5,6 @@
 
 <html>
 
-<style>
-    table {
-        width: 70%;
-        margin: 20px auto;
-        border-collapse: collapse;
-        background-color: #fff;
-        border-radius: 5px;
-    }
-</style>
 <nav>
 
     <%@ include file="studentNavbar.jsp" %>

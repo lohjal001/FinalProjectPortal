@@ -8,6 +8,8 @@ import java.util.List;
 //user bean is transfering data between servlets
 public class UserBean implements Serializable {
 
+    private String id;
+
     private USER_TYPE userType = USER_TYPE.student;
 
     private STATE_TYPE stateType = STATE_TYPE.anonymous;
@@ -38,29 +40,22 @@ public class UserBean implements Serializable {
         this.userType = userType;
     }
 
-    private String myVar = "";
-
-    private String ID;
 
     public UserBean(String ID, USER_TYPE userType, PRIVILAGE_TYPE privilageType, STATE_TYPE stateType){
-        this.ID=ID;
+        this.id=ID;
         this.userType=userType;
         this.privilageType=privilageType;
         this.stateType=stateType;
     }
     public void setID(String ID) {
-        this.ID = ID;
+
+        this.id = ID;
     }
     public String getID() {
-        return ID;
-    }
-    public String getMyVar() {
-        return myVar;
+
+        return id;
     }
 
-    public void setMyVar(String myVar) {
-        this.myVar = myVar;
-    }
 
     public enum USER_TYPE{
         //vanligtvis all caps i enum men bör matcha databasen i detta fallet
@@ -77,6 +72,11 @@ public class UserBean implements Serializable {
     public enum STATE_TYPE{
         anonymous,
         confirmed
+    }
+
+    @Override
+    public String toString() {
+        return "userType: "+userType + " privilageType: " + privilageType + " stateType: "  + stateType;
     }
 
 
