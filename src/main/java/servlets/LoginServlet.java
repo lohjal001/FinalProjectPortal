@@ -35,8 +35,6 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //doPost method handles the form submission, retrives users inputs from the request, then we query the database based on usertype (student or teacher)
         try {
-            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:4306/gritacademy", "userSELECT", "user");
-
             resp.setContentType("text/html");
             //hämta data från loginForm
             String username = req.getParameter("username");

@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.LinkedList;
 
 @WebServlet("/register")
@@ -28,6 +30,37 @@ public class RegisterServlet extends HttpServlet {
         try {
 
             resp.setContentType("text/html");
+
+            //the privilege type should be set in session in the log in method when teacher admin logs in
+            String privilegeType = (String) req.getSession().getAttribute("privilegeType");
+
+
+                if (!privilegeType.equals("admin")) {
+
+                    //make error message
+                    req.setAttribute("errorMessage", "you dont have privileges to perform this action");
+
+                } else {
+
+                    LinkedList<String[]> data = MySQLConnector.getConnector().selectQuery("studentInsert");
+
+                    if (data.size()>1) {
+                        System.out.println("here2");
+
+                        UserBean usersBean = new UserBean("", UserBean.USER_TYPE.teacher, UserBean.PRIVILAGE_TYPE.admin, UserBean.STATE_TYPE.confirmed);
+
+                        usersBean.setData(data);
+                        req.getSession().setAttribute("UserBean", usersBean);
+                        System.out.println("new student was added to the database");
+
+                } else {
+                    System.out.println("NOPE - student was not added to database");
+                }
+
+
+
+            resp.sendRedirect(req.getContextPath() + "/addstudent"); //redirect back tio soget method so student list will show with new student
+        }
             //hämta data från loginForm
 
 

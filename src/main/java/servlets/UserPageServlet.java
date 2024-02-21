@@ -24,23 +24,24 @@ public class UserPageServlet extends HttpServlet {
         protected void doPost (HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
             //This method should pick up query from csv file, send it to the correct jsp userpage depending on the user type that has logged in
             //Cannot reach data yet... and its not working in the POST method (?)
-            UserBean userBean = req.getSession().getAttribute("userBean") != null ? (UserBean) req.getSession().getAttribute("userBean") : null;
 
 
-            UserBean usersBean = (UserBean) req.getSession().getAttribute("UserBean"); //getting the login info saved in bean
+            UserBean usersBean = req.getSession().getAttribute("userBean") != null ? (UserBean) req.getSession().getAttribute("userBean") : null;
 
-            if (userBean != null && usersBean.getUserType().equals(UserBean.USER_TYPE.student) && usersBean.getStateType().equals((UserBean.STATE_TYPE.confirmed))) {
+
+          //  UserBean usersBean = (UserBean) req.getSession().getAttribute("UserBean"); //getting the login info saved in bean
+
+            if (usersBean != null && usersBean.getUserType().equals(UserBean.USER_TYPE.student) && usersBean.getStateType().equals((UserBean.STATE_TYPE.confirmed))) {
 
                 System.out.println("got here1");
                 LinkedList<String[]> data = null;
-                LinkedList<String[]> courses = MySQLConnector.getConnector().selectQuery("EnrolledCoursesOverview", ((UserBean) req.getSession().getAttribute("userBean")).getID());
+                LinkedList<String[]> courses = MySQLConnector.getConnector().selectQuery("EnrolledCoursesOverview", ((UserBean) req.getSession().getAttribute("UserBean")).getID());
                 if (req.getParameter("studentSubmitButton") != null) {
                     System.out.println("got here2");
                 } else {
                     data = courses;
                 }
 
-                req.setAttribute("data", data);
                 req.setAttribute("courses", courses);
                 req.getRequestDispatcher("JSP/userPage.jsp").forward(req, resp);
 
@@ -50,7 +51,7 @@ public class UserPageServlet extends HttpServlet {
                 System.out.println("got here");
 
 
-            } else if (userBean != null && usersBean.getUserType().equals(UserBean.USER_TYPE.teacher) && usersBean.getStateType().equals((UserBean.STATE_TYPE.confirmed))) {
+            } else if (usersBean != null && usersBean.getUserType().equals(UserBean.USER_TYPE.teacher) && usersBean.getStateType().equals((UserBean.STATE_TYPE.confirmed))) {
 
                 LinkedList<String[]> data = MySQLConnector.getConnector().selectQuery("teacherCourseInfo");
                 req.getRequestDispatcher("JSP/userPage.jsp").forward(req, resp);
