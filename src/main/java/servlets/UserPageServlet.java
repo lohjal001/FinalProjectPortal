@@ -17,14 +17,72 @@ public class UserPageServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
         doPost(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        UserBean userBean = req.getSession().getAttribute("userBean") != null ? (UserBean) req.getSession().getAttribute("userBean") : null;
+        UserBean usersBean = req.getSession().getAttribute("userBean") != null ? (UserBean) req.getSession().getAttribute("userBean") : null;
+
+       // UserBean usersBean = (UserBean) req.getSession().getAttribute("userBean");
+        try {
+            if (usersBean != null && usersBean.getUserType() == UserBean.USER_TYPE.student &&
+                    usersBean.getStateType() == UserBean.STATE_TYPE.confirmed) {
+
+                //tar in course id från form i jspn
+              //  String courseId = req.getParameter("courseId");
+
+                //if (req.getParameter("studentSubmitButton") != null) {
+                LinkedList<String[]> data = null;
+                LinkedList<String[]> courses = MySQLConnector.getConnector().selectQuery("EnrolledCoursesOverview", ((UserBean) req.getSession().getAttribute("userBean")).getID());
+
+                //TO CHECK IF DATA PRINTS OUT... heeyyy it doesnt....
+                for (String[] course : courses) {
+                    for (String courseInfo : course) {
+                        System.out.print(courseInfo+ " ");
+                    }
+                    System.out.println(); //  to the next line for each course
+                }
+                data = courses;
+
+                req.setAttribute("data", data);
+                req.setAttribute("courses", courses);
+               // usersBean.setData(courses);
+                req.getRequestDispatcher("JSP/userPage.jsp").forward(req, resp);
+
+            } else if (usersBean != null && usersBean.getUserType() == UserBean.USER_TYPE.teacher &&
+                    usersBean.getStateType() == UserBean.STATE_TYPE.confirmed) {
+                LinkedList<String[]> dataT = MySQLConnector.getConnector().selectQuery("teacherCourseInfo");
+                usersBean.setData(dataT);
+                req.getRequestDispatcher("JSP/userPage.jsp").forward(req, resp);
+            } else {
+                resp.sendRedirect(req.getContextPath() + "/login");
+            }
+        } catch (Exception e) {
+            System.out.println("something went wrong");
+        }
+    }
+}
+
+
+
+
+
+
+
+        // UserBean userBean = req.getSession().getAttribute("userBean") != null ? (UserBean) req.getSession().getAttribute("userBean") : null;
+        //System.out.println();
+        //req.getRequestDispatcher("JSP/userPage.jsp").forward(req,resp);
+        //req.getRequestDispatcher("JSP/fragments/student/studentUserPage.jsp").forward(req, resp);
+
+/*
+Userpage servlet should contain
+- Student user connected to JSP file with student courses
+- Teacher user connected to JSP file courses/students/student courses/teacher courses
+- Teacher admin connected to JSP file with all tables and CRUD privilages on everything
+
+
 
 
         System.out.println(userBean);
@@ -62,16 +120,4 @@ public class UserPageServlet extends HttpServlet {
             System.out.println("userpage servlet something went wrong");
             // req.getRequestDispatcher("JSP/login.jsp").forward(req, resp);
         }
-
-        //System.out.println();
-        //req.getRequestDispatcher("JSP/userPage.jsp").forward(req,resp);
-        //req.getRequestDispatcher("JSP/fragments/student/studentUserPage.jsp").forward(req, resp);
-    }
-
-}
-/*
-Userpage servlet should contain
-- Student user connected to JSP file with student courses
-- Teacher user connected to JSP file courses/students/student courses/teacher courses
-- Teacher admin connected to JSP file with all tables and CRUD privilages on everything
  */

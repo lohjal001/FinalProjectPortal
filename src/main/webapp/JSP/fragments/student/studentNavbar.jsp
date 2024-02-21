@@ -14,11 +14,11 @@
             </ul>
                     <form action="/userPage" method="post">
                         <select id="user_type" name="courseId">
-                            <c:forEach items="${courses}" var="dataPunkt">
-                                <option value="${dataPunkt[0]}">${dataPunkt[1]}</option>
+                            <c:forEach items="${courses}" var="dataPoint">
+                                <option value="${dataPoint[0]}">${dataPoint[1]}</option>
                             </c:forEach>
                         </select>
-                        <input type="submit" id="studentSubmit" name="studentSubmitButton" value="Show Details">
+                        <input type="submit" id="studentSubmit" name="studentSubmitButton" value="Show My Courses">
                         <button onclick=location.href='/userPage'>Go Back</button>
                     </form>
         </nav>

@@ -19,7 +19,7 @@ import java.util.LinkedList;
 @WebServlet(urlPatterns = "/login")
 public class LoginServlet extends HttpServlet {
 
-    String studentID;
+    String studentID = "";
     String teacherID;
 
     private static Connection connection;
@@ -27,7 +27,7 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.getRequestDispatcher("JSP/login.jsp").forward(req, resp);
-        doPost(req, resp);
+        // doPost(req, resp);
 
     } //forwards the request to the JSP file that has the log in form
 
@@ -35,7 +35,7 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //doPost method handles the form submission, retrives users inputs from the request, then we query the database based on usertype (student or teacher)
         try {
-            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:4306/gritacademy", "user", "user");
+            //  Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:4306/gritacademy", "user", "user");
 
             resp.setContentType("text/html");
             //hämta data från loginForm
@@ -50,64 +50,64 @@ public class LoginServlet extends HttpServlet {
             if (userType.equals("Student")) {
                 LinkedList<String[]> data = MySQLConnector.getConnector().selectQuery("loginStudent", username, password);
 
-
                 System.out.println(data.size());
 
 
-                if (data.size() > 1) {
-                    //   studentID = result.getString("id"); // retrieve the student ID from the result
-                    //  resp.getWriter().print("Logged in as student!");
-                    System.out.println("login servlet here2");
+                    if (data.size() > 1) {
 
-                    UserBean usersBean = new UserBean(studentID, UserBean.USER_TYPE.student, UserBean.PRIVILAGE_TYPE.user, UserBean.STATE_TYPE.confirmed);
+                        UserBean usersBean = new UserBean("", UserBean.USER_TYPE.student, UserBean.PRIVILAGE_TYPE.user, UserBean.STATE_TYPE.confirmed);
+                        usersBean.setID(data.get(1)[0]);
 
-                    usersBean.setData(data);
-                    req.getSession().setAttribute("userBean", usersBean);
-                    req.getSession().setAttribute("studentID", studentID);
-                    req.getSession().setMaxInactiveInterval(420);
+                        //   studentID = result.getString("id"); // retrieve the student ID from the result
+                        //  resp.getWriter().print("Logged in as student!");
+                        System.out.println("login servlet here2");
 
-                    System.out.println("login servlet here3");
+                        usersBean.setData(data);
+                        req.getSession().setAttribute("userBean", usersBean);
+                        req.getSession().setMaxInactiveInterval(420);
 
-
-                   req.getRequestDispatcher("/userPage").forward(req, resp);
-                    // resp.sendRedirect(req.getContextPath() + "/userPage");
+                        System.out.println("login servlet here3");
 
 
-                } else {
-                    req.getRequestDispatcher("JSP/login.jsp").forward(req, resp);
-                    System.out.println("could not log in");
-                    //System.out.println(((UserBean)(req.getSession().getAttribute("UserBean"))).getData());
+                        req.getRequestDispatcher("/userPage").forward(req, resp);
+                        // resp.sendRedirect(req.getContextPath() + "/userPage");
+
+
+                    } else {
+                        req.getRequestDispatcher("JSP/login.jsp").forward(req, resp);
+                        System.out.println("could not log in");
+                        //System.out.println(((UserBean)(req.getSession().getAttribute("UserBean"))).getData());
+                    }
+
+                } else if (userType.equals("Teacher")) {
+                    LinkedList<String[]> dataT = MySQLConnector.getConnector().selectQuery("loginTeacher");
+
+
+                    if (dataT.size() > 1 && !username.isEmpty() && !password.isEmpty()) {
+                        resp.getWriter().print("Logged in as teacher!");
+                        //teacherID = result2.getString("id"); //keep the id in session
+
+                        UserBean usersBean = new UserBean(teacherID, UserBean.USER_TYPE.student, UserBean.PRIVILAGE_TYPE.user, UserBean.STATE_TYPE.confirmed);
+
+                        //req.getRequestDispatcher("JSP/fragments/student/teacherUserPage.jsp").forward(req, resp);
+                        resp.getWriter().print(username + " " + password + " " + userType);
+                        req.getSession().setAttribute("userBean", usersBean);
+                        resp.sendRedirect(req.getContextPath() + "/userPage");
+
+                        //System.out.println(((UserBean)(req.getSession().getAttribute("UserBean"))).getData());
+                        //req.getSession().setMaxInactiveInterval(1);
+
+                    } else {
+                        req.getRequestDispatcher("JSP/login.jsp").forward(req, resp);
+                        System.out.println("could not log in");
+                        //add error message
+                    }
+                    //after user are logged in, sessions should start
+
+
                 }
-
-            } else if (userType.equals("Teacher")) {
-                LinkedList<String[]> dataT = MySQLConnector.getConnector().selectQuery("loginTeacher");
-
-
-                if (dataT.size() > 1 && !username.isEmpty() && !password.isEmpty()) {
-                    resp.getWriter().print("Logged in as teacher!");
-                    //teacherID = result2.getString("id"); //keep the id in session
-
-                    UserBean usersBean = new UserBean(teacherID, UserBean.USER_TYPE.student, UserBean.PRIVILAGE_TYPE.user, UserBean.STATE_TYPE.confirmed);
-
-                    //req.getRequestDispatcher("JSP/fragments/student/teacherUserPage.jsp").forward(req, resp);
-                    resp.getWriter().print(username + " " + password + " " + userType);
-                    req.getSession().setAttribute("userBean", usersBean);
-                    resp.sendRedirect(req.getContextPath() + "/userPage");
-
-                    //System.out.println(((UserBean)(req.getSession().getAttribute("UserBean"))).getData());
-                    //req.getSession().setMaxInactiveInterval(1);
-
-                } else {
-                    req.getRequestDispatcher("JSP/login.jsp").forward(req, resp);
-                    System.out.println("could not log in");
-                    //add error message
-                }
-                //after user are logged in, sessions should start
-
-
-            }
-        } catch (Exception e) {
-            //add error message
+            } catch(Exception e){
+            System.out.println("error log in"); //add error message
         }
     }
 }
