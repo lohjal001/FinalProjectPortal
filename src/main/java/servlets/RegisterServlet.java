@@ -32,6 +32,7 @@ public class RegisterServlet extends HttpServlet {
             resp.setContentType("text/html");
 
             //the privilege type should be set in session in the log in method when teacher admin logs in
+
             String privilegeType = (String) req.getSession().getAttribute("privilegeType");
 
 

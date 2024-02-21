@@ -6,8 +6,8 @@
 
 
 <body>
-    <div class="banner">
-    </div>
+        <h1> Register New Teacher </h>
+
 <main>
 <%@ include file="registerForm.jsp" %>
 
