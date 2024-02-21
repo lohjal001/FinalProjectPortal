@@ -11,7 +11,15 @@
 </nav>
 
 <h1>"Student User Page"</h1>
-
+<table id="data table">
+    <c:forEach items="${data}" var="dataPunkt">
+        <tr>
+            <c:forEach items="${dataPunkt}" var="dataPunktKolumn">
+                <td>${dataPunktKolumn}</td>
+            </c:forEach>
+        </tr>
+    </c:forEach>
+</table>
  <table>
         <thead>
             <tr>

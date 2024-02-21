@@ -35,6 +35,8 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //doPost method handles the form submission, retrives users inputs from the request, then we query the database based on usertype (student or teacher)
         try {
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:4306/gritacademy", "user", "user");
+
             resp.setContentType("text/html");
             //hämta data från loginForm
             String username = req.getParameter("username");
@@ -47,7 +49,10 @@ public class LoginServlet extends HttpServlet {
             //jämför data med databas student o teacher
             if (userType.equals("Student")) {
                 LinkedList<String[]> data = MySQLConnector.getConnector().selectQuery("loginStudent", username, password);
-                System.out.println("login servlet here1");
+
+
+                System.out.println(data.size());
+
 
                 if (data.size() > 1) {
                     //   studentID = result.getString("id"); // retrieve the student ID from the result
@@ -63,10 +68,10 @@ public class LoginServlet extends HttpServlet {
 
                     System.out.println("login servlet here3");
 
+
                    req.getRequestDispatcher("/userPage").forward(req, resp);
                     // resp.sendRedirect(req.getContextPath() + "/userPage");
 
-                    System.out.println("login servlet here4");
 
                 } else {
                     req.getRequestDispatcher("JSP/login.jsp").forward(req, resp);
