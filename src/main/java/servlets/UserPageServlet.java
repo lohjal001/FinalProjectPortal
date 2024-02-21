@@ -17,6 +17,7 @@ public class UserPageServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
         doPost(req, resp);
     }
 
@@ -33,11 +34,11 @@ public class UserPageServlet extends HttpServlet {
 
             if (usersBean != null && usersBean.getUserType().equals(UserBean.USER_TYPE.student) && usersBean.getStateType().equals((UserBean.STATE_TYPE.confirmed))) {
 
-                System.out.println("got here1");
+                System.out.println("userpage servlet got here1");
                 LinkedList<String[]> data = null;
                 LinkedList<String[]> courses = MySQLConnector.getConnector().selectQuery("EnrolledCoursesOverview", ((UserBean) req.getSession().getAttribute("UserBean")).getID());
                 if (req.getParameter("studentSubmitButton") != null) {
-                    System.out.println("got here2");
+                    System.out.println("userpage servlet got here2");
                 } else {
                     data = courses;
                 }
@@ -48,15 +49,19 @@ public class UserPageServlet extends HttpServlet {
                 //LinkedList<String[]> data = MySQLConnector.getConnector().selectQuery("EnrolledCoursesOverview");
                 //req.setAttribute("data", data);
                 //req.getRequestDispatcher("JSP/fragments/student/studentUserPage.jsp").forward(req, resp);
-                System.out.println("got here");
+                System.out.println("userpage servlet got here3");
+
+                
 
 
             } else if (usersBean != null && usersBean.getUserType().equals(UserBean.USER_TYPE.teacher) && usersBean.getStateType().equals((UserBean.STATE_TYPE.confirmed))) {
 
                 LinkedList<String[]> data = MySQLConnector.getConnector().selectQuery("teacherCourseInfo");
                 req.getRequestDispatcher("JSP/userPage.jsp").forward(req, resp);
+
             } else {
-                req.getRequestDispatcher("JSP/login.jsp").forward(req, resp);
+                System.out.println("userpage servlet something went wrong");
+               // req.getRequestDispatcher("JSP/login.jsp").forward(req, resp);
             }
 
             //System.out.println();

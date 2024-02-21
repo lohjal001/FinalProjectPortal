@@ -47,62 +47,65 @@ public class LoginServlet extends HttpServlet {
             //jämför data med databas student o teacher
             if (userType.equals("Student")) {
                 LinkedList<String[]> data = MySQLConnector.getConnector().selectQuery("loginStudent", username, password);
-                System.out.println("here1");
+                System.out.println("login servlet here1");
 
-                if (data.size()>1) {
-                 //   studentID = result.getString("id"); // retrieve the student ID from the result
+                if (data.size() > 1) {
+                    //   studentID = result.getString("id"); // retrieve the student ID from the result
                     //  resp.getWriter().print("Logged in as student!");
-                    System.out.println("here2");
+                    System.out.println("login servlet here2");
 
                     UserBean usersBean = new UserBean(studentID, UserBean.USER_TYPE.student, UserBean.PRIVILAGE_TYPE.user, UserBean.STATE_TYPE.confirmed);
 
                     usersBean.setData(data);
-                    req.getSession().setAttribute("UserBean", usersBean);
+                    req.getSession().setAttribute("userBean", usersBean);
                     req.getSession().setAttribute("studentID", studentID);
-                    req.getSession().setMaxInactiveInterval(1);
+                    req.getSession().setMaxInactiveInterval(420);
 
-                    System.out.println("here3");
+                    System.out.println("login servlet here3");
 
-                    req.getRequestDispatcher("/userPage").forward(req,resp);
-                  //  resp.sendRedirect(req.getContextPath() + "/userPage");
+                   req.getRequestDispatcher("/userPage").forward(req, resp);
+                    // resp.sendRedirect(req.getContextPath() + "/userPage");
 
+                    System.out.println("login servlet here4");
+
+                } else {
+                    req.getRequestDispatcher("JSP/login.jsp").forward(req, resp);
+                    System.out.println("could not log in");
+                    //System.out.println(((UserBean)(req.getSession().getAttribute("UserBean"))).getData());
+                }
+
+            } else if (userType.equals("Teacher")) {
+                LinkedList<String[]> dataT = MySQLConnector.getConnector().selectQuery("loginTeacher");
+
+
+                if (dataT.size() > 1 && !username.isEmpty() && !password.isEmpty()) {
+                    resp.getWriter().print("Logged in as teacher!");
+                    //teacherID = result2.getString("id"); //keep the id in session
+
+                    UserBean usersBean = new UserBean(teacherID, UserBean.USER_TYPE.student, UserBean.PRIVILAGE_TYPE.user, UserBean.STATE_TYPE.confirmed);
+
+                    //req.getRequestDispatcher("JSP/fragments/student/teacherUserPage.jsp").forward(req, resp);
+                    resp.getWriter().print(username + " " + password + " " + userType);
+                    req.getSession().setAttribute("userBean", usersBean);
+                    resp.sendRedirect(req.getContextPath() + "/userPage");
 
                     //System.out.println(((UserBean)(req.getSession().getAttribute("UserBean"))).getData());
+                    //req.getSession().setMaxInactiveInterval(1);
 
-                } else if (userType.equals("Teacher")) {
-                    LinkedList<String[]> dataT = MySQLConnector.getConnector().selectQuery("loginTeacher");
-
-
-                    if (dataT.size()>1 && !username.isEmpty() && !password.isEmpty()) {
-                        resp.getWriter().print("Logged in as teacher!");
-                        //teacherID = result2.getString("id"); //keep the id in session
-
-                        UserBean usersBean = new UserBean(teacherID, UserBean.USER_TYPE.student, UserBean.PRIVILAGE_TYPE.user, UserBean.STATE_TYPE.confirmed);
-
-                        //req.getRequestDispatcher("JSP/fragments/student/teacherUserPage.jsp").forward(req, resp);
-                        resp.getWriter().print(username+" "+password+" "+userType);
-                        req.getSession().setAttribute("UserBean", usersBean);
-                        resp.sendRedirect(req.getContextPath() + "/userPage");
-
-                        //System.out.println(((UserBean)(req.getSession().getAttribute("UserBean"))).getData());
-                        //req.getSession().setMaxInactiveInterval(1);
-
-                    } else {
-                        req.getRequestDispatcher("JSP/login.jsp").forward(req, resp);
-                        System.out.println("could not log in");
-                        //add error message
-                    }
-                        //after user are logged in, sessions should start
-
-
-                    }
+                } else {
+                    req.getRequestDispatcher("JSP/login.jsp").forward(req, resp);
+                    System.out.println("could not log in");
+                    //add error message
                 }
-            } catch(Exception e) {
+                //after user are logged in, sessions should start
+
+
+            }
+        } catch (Exception e) {
             //add error message
         }
     }
 }
-
                 /* Den gamla koden - av någon anledning kunde jag inte få koden att jämföra med databasen, vem som helst kunde logga in
 
               if (userType.equals("Students")) {
