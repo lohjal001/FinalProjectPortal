@@ -13,9 +13,12 @@
 
 
 </nav>
+<div>
+        <form action="/fragments/admin/registerStudent" method="POST"><input type="submit" name="addStudent" value="ADD STUDENT"></form>
+        <form action="/fragments/admin/registerTeacher" method="POST"><input type="submit" name="addTeacher" value="ADD TEACHER"></form>
 
-<input type="button" name="add_student" onclick="addStudent"> Register new student</input>
-<input type="button" name="add_teacher"> Register new teacher</input>
+</div>
+
 
 <%@ include file="fragments/footer.jsp" %>
 

@@ -33,13 +33,16 @@ public class RegisterServlet extends HttpServlet {
 
             //the privilege type should be set in session in the log in method when teacher admin logs in
 
-            String privilegeType = (String) req.getSession().getAttribute("privilegeType");
+            String stateType = (String) req.getSession().getAttribute("stateType");
+            String userType = (String) req.getSession().getAttribute("userType");
 
 
-                if (!privilegeType.equals("admin")) {
+
+            if (!stateType.equals("confirmed") && !userType.equals("teacher")) {
 
                     //make error message
                     req.setAttribute("errorMessage", "you dont have privileges to perform this action");
+                    req.getRequestDispatcher("JSP/login.jsp").forward(req, resp);
 
                 } else {
                     req.getRequestDispatcher("JSP/register").forward(req, resp);
