@@ -14,6 +14,20 @@
 <body>
 <h1>My Teacher Page</h1>
 
+<input type="submit" name="allStudents" value="Show All Students">
+<input type="submit" name="allTeachers" value="Show All Teachers">
+<input type="submit" name="allSCTSubmit" value="Show All Students/Courses/Teachers">
+
+
+
 <%@ include file="teacherData.jsp" %>
 
+
+<%@ include file="teacherAllStudentsCoursesTeachers.jsp" %>
+<%@ include file="teacherAllStudents.jsp" %>
+<%@ include file="teacherAllCourses.jsp" %>
+
+
+
+</body>
 </html>
