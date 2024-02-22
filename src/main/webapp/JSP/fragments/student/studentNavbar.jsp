@@ -10,16 +10,14 @@
             </ul>
                 </div>
 
-                    <form action="/userPage" method="post">
-                        <select id="user_type" name="courseId">
-                            <c:forEach items="${courses}" var="dataPoint">
-                                <option value="${dataPoint[0]}">${dataPoint[1]}</option>
-                            </c:forEach>
-                        </select>
-                        <input type="submit" id="showClassmates" name="studentSubmitButton" value="Show My Classmates">
+    <div>
+        <select id="user_type" name="courseId">
+            <c:forEach items="${courses}" var="dataPoint">
+                <option value="${dataPoint[0]}">${dataPoint[1]}</option>
+            </c:forEach>
+        </select>
 
-                        <button onclick=location.href='/userPage'>Go Back</button>
-                        <input type="button" value="Log Out" name="logOut">
-                    </form>
+        <li><form action="/logout" method="POST"><input type="submit" name="logout" value="LOGOUT"></form></li>
+    </div>
         </nav>
 </navbar>

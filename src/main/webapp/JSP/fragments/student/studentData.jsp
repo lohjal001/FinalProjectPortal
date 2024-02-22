@@ -7,8 +7,6 @@
             <th>YHP</th>
             <th>Description</th>
             <th>teachers</th>
-
-
         </tr>
 
             <c:forEach items="${courses}" var="courseData">

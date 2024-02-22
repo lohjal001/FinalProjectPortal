@@ -8,7 +8,7 @@ import java.util.List;
 //user bean is transfering data between servlets
 public class UserBean implements Serializable {
 
-    private String id;
+    private String id = "-1";
 
     private USER_TYPE userType = USER_TYPE.student;
 
@@ -40,6 +40,7 @@ public class UserBean implements Serializable {
         this.userType = userType;
     }
 
+    public UserBean(){ }
 
     public UserBean(String ID, USER_TYPE userType, PRIVILAGE_TYPE privilageType, STATE_TYPE stateType){
         this.id=ID;

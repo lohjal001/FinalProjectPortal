@@ -72,7 +72,9 @@ public class LoginServlet extends HttpServlet {
                     } else {
                         req.getRequestDispatcher("JSP/login.jsp").forward(req, resp);
                         System.out.println("could not log in");
-                        //System.out.println(((UserBean)(req.getSession().getAttribute("UserBean"))).getData());
+                        // TODO
+                        UserBean userBean = new UserBean();
+                        System.out.println(userBean.getStateType());
                     }
 
                 } else if (userType.equals("Teacher")) {
@@ -101,33 +103,10 @@ public class LoginServlet extends HttpServlet {
                     }
                     //after user are logged in, sessions should start
 
-
                 }
             } catch(Exception e){
             System.out.println("error log in"); //add error message
+
         }
     }
 }
-                /* Den gamla koden - av någon anledning kunde jag inte få koden att jämföra med databasen, vem som helst kunde logga in
-
-              if (userType.equals("Students")) {
-               LinkedList<String[]> data = MySQLConnector.getConnector().selectQuery("loginStudent", username, password);
-              if (!data.isEmpty()) resp.getWriter().print("Logged in as student!");
-              resp.sendRedirect(req.getContextPath() + "/userPage");
-             // userBean.setUserPrivilage(UserBean.PRIVILAGE_TYPE.user);
-
-            } else if (userType.equals("Teacher")) {
-                LinkedList<String[]> data = MySQLConnector.getConnector().selectQuery("teacherLogin", username, password);
-                if (!data.isEmpty()) // for some reason the data is not comparing to the database and anyone can log in
-                    resp.getWriter().print("Logged in as teacher!");
-                req.getRequestDispatcher("JSP/fragments/teacher/teacherUserPage.jsp").forward(req, resp);
-
-            /*
-                //adding for loop to check specifically if username and password are matching //NOPE the data list is not comparing to database here?
-                for (String[] row:data){
-                    String dbusername = row[6];
-                    String dbpassword = row[7];
-
-                    if (username.equals(dbusername) && password.equals(dbpassword)){
-
-             */
