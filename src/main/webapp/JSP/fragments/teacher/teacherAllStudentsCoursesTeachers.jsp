@@ -16,20 +16,6 @@
 
         </tr>
 
-<<<<<<< Updated upstream
-            <c:forEach items="${allTables}" var="allSCT">
-                <tr>
-                        <td>${allSCT[0]}</td>
-                        <td>${allSCT[1]}</td>
-                        <td>${allSCT[2]}</td>
-                        <td>${allSCT[3]}</td>
-                        <td>${allSCT[4]}</td>
-                        <td>${allSCT[5]}</td>
-                        <td>${allSCT[6]}</td>
-                        <td>${allSCT[7]}</td>
-                        <td>${allSCT[8]}</td>
-                        <td>${allSCT[9]}</td>
-=======
             <c:forEach items="${allTables}" var="SCTData">
                 <tr>
                         <td>${SCTData[0]}</td>
@@ -42,9 +28,6 @@
                         <td>${SCTData[7]}</td>
                         <td>${SCTData[8]}</td>
                         <td>${SCTData[9]}</td>
->>>>>>> Stashed changes
-
-
 
                 </tr>
             </c:forEach>
