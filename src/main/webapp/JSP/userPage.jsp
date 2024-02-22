@@ -18,11 +18,6 @@
         <%@ include file="fragments/admin/adminUserPage.jsp" %>
     </c:when>
 </c:choose>
-<nav>
-
-        <%@ include file="fragments/navbar.jsp" %>
-
-</nav>
 
 
 <%@ include file="fragments/footer.jsp" %>

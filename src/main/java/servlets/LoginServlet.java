@@ -20,7 +20,7 @@ import java.util.LinkedList;
 public class LoginServlet extends HttpServlet {
 
     String studentID = "";
-    String teacherID;
+    String teacherID = "";
 
     private static Connection connection;
 
