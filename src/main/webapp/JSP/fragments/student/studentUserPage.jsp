@@ -4,18 +4,17 @@
 
 <html>
 <head>
-<link rel='stylesheet' type='text/css' href='styles.css'>
+<link rel="stylesheet" type="text/css" href="/styles.css">
+<script src=https://cdn.tailwindcss.com></script></head>
 </head>
-
 <nav>
 <%@ include file="studentNavbar.jsp" %>
 </nav>
 
-<h1>My Student Page</h1>
-
+<h1><b>My Student Page</b></h1>
 <%@ include file="studentData.jsp" %>
 
-
+</div>
 
 </body>
 </html>

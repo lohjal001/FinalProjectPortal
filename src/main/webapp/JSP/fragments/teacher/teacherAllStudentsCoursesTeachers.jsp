@@ -1,7 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<div class="table-cont">
 
-            <h2>All students in all courses</h2>
+            <h1>All students in all courses</h1>
 
     <table>
         <tr>
@@ -36,4 +35,3 @@
             </c:forEach>
 
     </table>
-</div>

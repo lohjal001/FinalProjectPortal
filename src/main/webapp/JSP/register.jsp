@@ -3,9 +3,12 @@
 <!DOCTYPE html>
 
 <html>
+<head>
 <link rel="stylesheet" type="text/css" href="/styles.css">
+<script src=https://cdn.tailwindcss.com></script>
 
 <%@ include file="fragments/header.jsp" %>
+</head>
 <body>
 <nav>
 

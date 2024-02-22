@@ -1,7 +1,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<div class="table-cont">
+<link rel="stylesheet" type="text/css" href="/styles.css">
+<script src=https://cdn.tailwindcss.com></script>
 
-<h2>My Courses</h2>
+<h1>My Courses</h1>
 
     <table>
         <tr>
@@ -25,7 +26,7 @@
             </c:forEach>
     </table>
 
-    <h2>My Fellow Students</h2>
+    <h1>My Fellow Students</h1>
 
         <table>
         <tr>
@@ -52,4 +53,3 @@
 
         </table>
 
-</div>

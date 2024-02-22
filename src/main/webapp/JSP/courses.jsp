@@ -1,11 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
-<link rel="stylesheet" type="text/css" href="/styles.css">
 
 <html>
-<%@ include file="fragments/header.jsp" %>
+<head>
+<link rel="stylesheet" type="text/css" href="/styles.css">
+<script src=https://cdn.tailwindcss.com></script>
 
+<%@ include file="fragments/header.jsp" %>
+</head>
 <body>
 <nav>
 
