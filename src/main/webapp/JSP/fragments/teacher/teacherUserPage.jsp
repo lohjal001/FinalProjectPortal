@@ -10,5 +10,6 @@
 
 <h1>"Teacher user page"</h1>
 
+<%@ include file="teacherData.jsp" %>
 
 </html>
