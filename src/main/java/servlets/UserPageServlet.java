@@ -66,7 +66,7 @@ public class UserPageServlet extends HttpServlet {
                     usersBean.getPrivilageType() == UserBean.PRIVILAGE_TYPE.user &&
                     usersBean.getStateType() == UserBean.STATE_TYPE.confirmed) {
 
-                LinkedList<String[]> data = null; //sätter data lista till 0 så vi kan spara "courses" i den
+                LinkedList<String[]> dataC = null; //sätter data lista till 0 så vi kan spara "courses" i den
                 LinkedList<String[]> courses = MySQLConnector.getConnector().selectQuery("teacherCourseInfo", ((UserBean) req.getSession().getAttribute("userBean")).getID());
 
                 //TO CHECK IF DATA PRINTS OUT
@@ -75,42 +75,42 @@ public class UserPageServlet extends HttpServlet {
                         System.out.print(courseInfo + " ");
                     }
                 }
-                data = courses;
-                req.setAttribute("data", data);
-                req.setAttribute("courses", courses);
+
+                dataC = courses;
+
                 // usersBean.setData(courses);
+
+
+                LinkedList<String[]> dataA = null;
+                LinkedList<String[]> allTables = MySQLConnector.getConnector().selectQuery("allStudentsCoursesTeachers",
+                                ((UserBean) req.getSession().getAttribute("userBean")).getID());
+
+                //TO CHECK IF DATA PRINTS OUT
+                for (String[] tables : allTables) {
+                    for (String allTablesInfo : tables) {
+                        System.out.print(allTablesInfo + " ");
+                    }
+                }
+
+                dataA = allTables;
+
+
+                req.setAttribute("dataC", dataC);
+                req.setAttribute("courses", courses);
+
+                req.setAttribute("dataA", dataA);
+                req.setAttribute("allTables", allTables);
+
                 req.getRequestDispatcher("JSP/userPage.jsp").forward(req, resp);
 
 
-                /*
-                try {
-                    String allSCTSubmit = req.getParameter("allSCTSubmit");
-                    System.out.println(allSCTSubmit);
-                    if (allSCTSubmit != null) {
-                       //sätter data lista till 0 så vi kan spara "andra quries i den
-                        data = null;
-                        LinkedList<String[]> allTables = MySQLConnector.getConnector().selectQuery("allStudentsCoursesTeachers",
-                                ((UserBean) req.getSession().getAttribute("userBean")).getID());
-                        data = allTables;
-                        req.setAttribute("data", data);
-                        req.setAttribute("allTables", allTables);
-                        req.getRequestDispatcher("JSP/userPage.jsp").forward(req, resp);
+                    //usersBean.setData(allTables);
 
-
-                    } else if (req.getParameter("allStudents") != null) {
-                        allStudents();
-                    } else if (req.getParameter("allCourses") != null) {
-                        allCourses();
-                    }
-
-
-                 */
-                System.out.println("after submit button");
-                //usersBean.setData(allTables);
 
             } else {
                 resp.sendRedirect(req.getContextPath() + "/login");
             }
+
         } catch (Exception e) {
             System.out.println("something went wrong in user page servlet");
         }
@@ -118,24 +118,25 @@ public class UserPageServlet extends HttpServlet {
 
 
 
-    public static void allStudentsCoursesTeachers(UserBean usersBean,HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        LinkedList<String[]> data = null; //sätter data lista till 0 så vi kan spara "andra quries i den
-        LinkedList<String[]> allTables = MySQLConnector.getConnector().selectQuery("allStudentsCoursesTeachers", ((UserBean) req.getSession().getAttribute("userBean")).getID());
-        data = allTables;
-        req.setAttribute("data", data);
-        req.setAttribute("allTables", allTables);
-        // usersBean.setData(allTables);
-        req.getRequestDispatcher("JSP/userPage.jsp").forward(req, resp);
+        public static void allStudentsCoursesTeachers (UserBean usersBean, HttpServletRequest req, HttpServletResponse
+        resp) throws ServletException, IOException {
+            LinkedList<String[]> data = null; //sätter data lista till 0 så vi kan spara "andra quries i den
+            LinkedList<String[]> allTables = MySQLConnector.getConnector().selectQuery("allStudentsCoursesTeachers", ((UserBean) req.getSession().getAttribute("userBean")).getID());
+            data = allTables;
+            req.setAttribute("data", data);
+            req.setAttribute("allTables", allTables);
+            // usersBean.setData(allTables);
+            req.getRequestDispatcher("JSP/userPage.jsp").forward(req, resp);
 
-    }
+        }
 
-    public static void allCourses() {
+        public static void allCourses () {
 
-    }
+        }
 
-    public static void allStudents() {
+        public static void allStudents () {
 
-    }
+        }
 
 }
 
@@ -192,4 +193,32 @@ Userpage servlet should contain
             System.out.println("userpage servlet something went wrong");
             // req.getRequestDispatcher("JSP/login.jsp").forward(req, resp);
         }
+
+
+ try {
+String allSCTSubmit = req.getParameter("allSCTSubmit");
+                    System.out.println(allSCTSubmit);
+                    if (allSCTSubmit != null) {
+//sätter data lista till 0 så vi kan spara "andra quries i den
+data = null;
+LinkedList<String[]> allTables = MySQLConnector.getConnector().selectQuery("allStudentsCoursesTeachers",
+        ((UserBean) req.getSession().getAttribute("userBean")).getID());
+data = allTables;
+                        req.setAttribute("data", data);
+                        req.setAttribute("allTables", allTables);
+                        req.getRequestDispatcher("JSP/userPage.jsp").forward(req, resp);
+
+
+                    } else if (req.getParameter("allStudents") != null) {
+allStudents();
+                    } else if (req.getParameter("allCourses") != null) {
+allCourses();
+                    }
+
+                            System.out.println("after submit button");
+//usersBean.setData(allTables);
+
+                } catch (Exception e) {
+        }
+
  */
