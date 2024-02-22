@@ -58,8 +58,6 @@ public class LoginServlet extends HttpServlet {
                         UserBean usersBean = new UserBean("", UserBean.USER_TYPE.student, UserBean.PRIVILAGE_TYPE.user, UserBean.STATE_TYPE.confirmed);
                         usersBean.setID(data.get(1)[0]);
 
-                        //   studentID = result.getString("id"); // retrieve the student ID from the result
-                        //  resp.getWriter().print("Logged in as student!");
                         System.out.println("login servlet here2");
 
                         usersBean.setData(data);
@@ -68,9 +66,7 @@ public class LoginServlet extends HttpServlet {
 
                         System.out.println("login servlet here3");
 
-
                         req.getRequestDispatcher("/userPage").forward(req, resp);
-                        // resp.sendRedirect(req.getContextPath() + "/userPage");
 
 
                     } else {
@@ -80,22 +76,23 @@ public class LoginServlet extends HttpServlet {
                     }
 
                 } else if (userType.equals("Teacher")) {
-                    LinkedList<String[]> dataT = MySQLConnector.getConnector().selectQuery("loginTeacher");
+                    LinkedList<String[]> data = MySQLConnector.getConnector().selectQuery("loginTeacher", username, password);
 
 
-                    if (dataT.size() > 1 && !username.isEmpty() && !password.isEmpty()) {
-                        resp.getWriter().print("Logged in as teacher!");
-                        //teacherID = result2.getString("id"); //keep the id in session
+                    if (data.size() > 1) {
 
-                        UserBean usersBean = new UserBean(teacherID, UserBean.USER_TYPE.student, UserBean.PRIVILAGE_TYPE.user, UserBean.STATE_TYPE.confirmed);
+                            UserBean usersBean = new UserBean("", UserBean.USER_TYPE.teacher, UserBean.PRIVILAGE_TYPE.user, UserBean.STATE_TYPE.confirmed);
+                            usersBean.setID(data.get(1)[0]);
 
-                        //req.getRequestDispatcher("JSP/fragments/student/teacherUserPage.jsp").forward(req, resp);
-                        resp.getWriter().print(username + " " + password + " " + userType);
-                        req.getSession().setAttribute("userBean", usersBean);
-                        resp.sendRedirect(req.getContextPath() + "/userPage");
+                            System.out.println("login servlet here2");
 
-                        //System.out.println(((UserBean)(req.getSession().getAttribute("UserBean"))).getData());
-                        //req.getSession().setMaxInactiveInterval(1);
+                            usersBean.setData(data);
+                            req.getSession().setAttribute("userBean", usersBean);
+                            req.getSession().setMaxInactiveInterval(420);
+
+                            System.out.println("login servlet here3");
+
+                            req.getRequestDispatcher("/userPage").forward(req, resp);
 
                     } else {
                         req.getRequestDispatcher("JSP/login.jsp").forward(req, resp);

@@ -1,9 +1,5 @@
 <link rel="stylesheet" href="/styles.css">
 <navbar id="studentNavbar">
-    <banner>
-        <div class="banner">
-        </div>
-    </banner>
     <div class='navbar'>
         <nav>
             <ul>
@@ -12,6 +8,8 @@
                 <li><a href="/login">LOGIN</a></li>
                 <li><a href="/userPage">USERPAGE</a></li>
             </ul>
+                </div>
+
                     <form action="/userPage" method="post">
                         <select id="user_type" name="courseId">
                             <c:forEach items="${courses}" var="dataPoint">
@@ -22,5 +20,4 @@
                         <button onclick=location.href='/userPage'>Go Back</button>
                     </form>
         </nav>
-    </div>
 </navbar>

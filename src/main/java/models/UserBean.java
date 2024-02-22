@@ -66,7 +66,7 @@ public class UserBean implements Serializable {
     public enum PRIVILAGE_TYPE{
         user,
         admin,
-        superAdmin
+
     }
 
     public enum STATE_TYPE{

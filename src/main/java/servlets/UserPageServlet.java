@@ -27,14 +27,15 @@ public class UserPageServlet extends HttpServlet {
 
        // UserBean usersBean = (UserBean) req.getSession().getAttribute("userBean");
         try {
-            if (usersBean != null && usersBean.getUserType() == UserBean.USER_TYPE.student &&
+            if (usersBean != null &&
+                    usersBean.getUserType() == UserBean.USER_TYPE.student &&
                     usersBean.getStateType() == UserBean.STATE_TYPE.confirmed) {
 
                 //tar in course id från form i jspn
               //  String courseId = req.getParameter("courseId");
 
                 //if (req.getParameter("studentSubmitButton") != null) {
-                LinkedList<String[]> data = null;
+                LinkedList<String[]> data = null; //sätter data lista till 0 så vi kan spara "courses" i den
                 LinkedList<String[]> courses = MySQLConnector.getConnector().selectQuery("EnrolledCoursesOverview", ((UserBean) req.getSession().getAttribute("userBean")).getID());
 
                 //TO CHECK IF DATA PRINTS OUT... heeyyy it doesnt....
@@ -51,16 +52,31 @@ public class UserPageServlet extends HttpServlet {
                // usersBean.setData(courses);
                 req.getRequestDispatcher("JSP/userPage.jsp").forward(req, resp);
 
-            } else if (usersBean != null && usersBean.getUserType() == UserBean.USER_TYPE.teacher &&
+            } else if (usersBean != null &&
+                    usersBean.getUserType() == UserBean.USER_TYPE.teacher &&
+                    usersBean.getPrivilageType() == UserBean.PRIVILAGE_TYPE.user &&
                     usersBean.getStateType() == UserBean.STATE_TYPE.confirmed) {
-                LinkedList<String[]> dataT = MySQLConnector.getConnector().selectQuery("teacherCourseInfo");
-                usersBean.setData(dataT);
+
+                LinkedList<String[]> data = null; //sätter data lista till 0 så vi kan spara "courses" i den
+                LinkedList<String[]> courses = MySQLConnector.getConnector().selectQuery("teacherCourseInfo", ((UserBean) req.getSession().getAttribute("userBean")).getID());
+
+                //TO CHECK IF DATA PRINTS OUT
+                for (String[] course : courses) {
+                    for (String courseInfo : course) {
+                        System.out.print(courseInfo+ " ");
+                    }
+                }
+                data = courses;
+
+                req.setAttribute("data", data);
+                req.setAttribute("courses", courses);
+                // usersBean.setData(courses);
                 req.getRequestDispatcher("JSP/userPage.jsp").forward(req, resp);
             } else {
                 resp.sendRedirect(req.getContextPath() + "/login");
             }
         } catch (Exception e) {
-            System.out.println("something went wrong");
+            System.out.println("something went wrong in user page servlet");
         }
     }
 }

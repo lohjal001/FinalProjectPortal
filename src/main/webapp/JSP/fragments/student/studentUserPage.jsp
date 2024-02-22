@@ -7,12 +7,13 @@
 <link rel='stylesheet' type='text/css' href='styles.css'>
 </head>
 
-<h1>"Student User Page"</h1>
-
 <nav>
-    <%@ include file="studentNavbar.jsp" %>
+<%@ include file="studentNavbar.jsp" %>
 </nav>
-    <%@ include file="data.jsp" %>
+
+<h1>My Student Page</h1>
+
+<%@ include file="studentData.jsp" %>
 
 
 
