@@ -22,7 +22,7 @@ public class RegisterServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("/JSP/fragments/admin/registerStudent.jsp").forward(req,resp);
+        req.getRequestDispatcher("/JSP/register.jsp").forward(req,resp);
     }
 
     @Override
@@ -42,7 +42,7 @@ public class RegisterServlet extends HttpServlet {
                     req.setAttribute("errorMessage", "you dont have privileges to perform this action");
 
                 } else {
-
+                    req.getRequestDispatcher("JSP/register").forward(req, resp);
                     LinkedList<String[]> data = MySQLConnector.getConnector().selectQuery("studentInsert");
 
                     if (data.size()>1) {

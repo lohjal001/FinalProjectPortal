@@ -6,7 +6,11 @@
 
 
 <body>
-    <h1> Register New Teacher </h>
+<nav>
+
+    <%@ include file="adminNavbar.jsp" %>
+</nav>
+    <h1> Register New Teacher </h1>
 <main>
 <%@ include file="registerForm.jsp" %>
 

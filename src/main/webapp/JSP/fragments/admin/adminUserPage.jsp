@@ -1,21 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
-
-<link rel="stylesheet" href="/styles.css">
+<html>
 
 
 <body>
 <nav>
 
-        <%@ include file="adminNavbar.jsp" %>
+    <%@ include file="adminNavbar.jsp" %>
 </nav>
-        <h1> Register New Student </h1>
-
-<main>
-<%@ include file="registerForm.jsp" %>
-
-</main>
+<p>"Admin User Page"</p>
 
 
 </body>

@@ -14,6 +14,9 @@
 
 </nav>
 
+<input type="button" name="add_student" onclick="addStudent"> Register new student</input>
+<input type="button" name="add_teacher"> Register new teacher</input>
+
 <%@ include file="fragments/footer.jsp" %>
 
 </body>
