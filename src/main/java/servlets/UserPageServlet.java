@@ -66,45 +66,16 @@ public class UserPageServlet extends HttpServlet {
                     usersBean.getPrivilageType() == UserBean.PRIVILAGE_TYPE.user &&
                     usersBean.getStateType() == UserBean.STATE_TYPE.confirmed) {
 
-                LinkedList<String[]> dataC = null; //sätter data lista till 0 så vi kan spara "courses" i den
-                LinkedList<String[]> courses = MySQLConnector.getConnector().selectQuery("teacherCourseInfo", ((UserBean) req.getSession().getAttribute("userBean")).getID());
+                //query for which courses this teacher is registered on
+                teachersCourses(usersBean, req, resp);
 
-                //TO CHECK IF DATA PRINTS OUT
-                for (String[] course : courses) {
-                    for (String courseInfo : course) {
-                        System.out.print(courseInfo + " ");
-                    }
-                }
-
-                dataC = courses;
-
-                // usersBean.setData(courses);
-
-
-                LinkedList<String[]> dataA = null;
-                LinkedList<String[]> allTables = MySQLConnector.getConnector().selectQuery("allStudentsCoursesTeachers",
-                                ((UserBean) req.getSession().getAttribute("userBean")).getID());
-
-                //TO CHECK IF DATA PRINTS OUT
-                for (String[] tables : allTables) {
-                    for (String allTablesInfo : tables) {
-                        System.out.print(allTablesInfo + " ");
-                    }
-                }
-
-                dataA = allTables;
-
-
-                req.setAttribute("dataC", dataC);
-                req.setAttribute("courses", courses);
-
-                req.setAttribute("dataA", dataA);
-                req.setAttribute("allTables", allTables);
+                //query for all students registered and courses and teachers
+                allStudentsCoursesTeachers(usersBean, req, resp);
 
                 req.getRequestDispatcher("JSP/userPage.jsp").forward(req, resp);
 
 
-                    //usersBean.setData(allTables);
+                //usersBean.setData(allTables);
 
 
             } else {
@@ -117,16 +88,26 @@ public class UserPageServlet extends HttpServlet {
     }
 
 
+    public static void teachersCourses(UserBean usersBean, HttpServletRequest req, HttpServletResponse
+        resp) throws ServletException, IOException {
+        LinkedList<String[]> dataC = null; //sätter data lista till 0 så vi kan spara "courses" i den
+        LinkedList<String[]> courses = MySQLConnector.getConnector().selectQuery("teacherCourseInfo", ((UserBean) req.getSession().getAttribute("userBean")).getID());
+        dataC = courses;
+        req.setAttribute("dataC", dataC);
+        req.setAttribute("courses", courses);
+
+    }
+
+
+
 
         public static void allStudentsCoursesTeachers (UserBean usersBean, HttpServletRequest req, HttpServletResponse
         resp) throws ServletException, IOException {
-            LinkedList<String[]> data = null; //sätter data lista till 0 så vi kan spara "andra quries i den
+            LinkedList<String[]> dataA = null;
             LinkedList<String[]> allTables = MySQLConnector.getConnector().selectQuery("allStudentsCoursesTeachers", ((UserBean) req.getSession().getAttribute("userBean")).getID());
-            data = allTables;
-            req.setAttribute("data", data);
+            dataA = allTables;
+            req.setAttribute("dataA", dataA);
             req.setAttribute("allTables", allTables);
-            // usersBean.setData(allTables);
-            req.getRequestDispatcher("JSP/userPage.jsp").forward(req, resp);
 
         }
 
@@ -138,7 +119,7 @@ public class UserPageServlet extends HttpServlet {
 
         }
 
-}
+    }
 
 
 
