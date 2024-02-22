@@ -1,7 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <div class="table-cont">
 
-            <h1>All students in all courses</h1>
+            <h2>All students in all courses</h2>
 
     <table>
         <tr>

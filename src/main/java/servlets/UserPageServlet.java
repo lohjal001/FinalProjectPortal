@@ -28,7 +28,7 @@ public class UserPageServlet extends HttpServlet {
 
         // UserBean usersBean = (UserBean) req.getSession().getAttribute("userBean");
         try {
-            if (usersBean != null && usersBean.getUserType() == UserBean.USER_TYPE.student && usersBean.getStateType() == UserBean.STATE_TYPE.confirmed) {
+            if (usersBean != null && usersBean.getUserType() == UserBean.USER_TYPE.student && usersBean.getPrivilageType() == UserBean.PRIVILAGE_TYPE.user && usersBean.getStateType() == UserBean.STATE_TYPE.confirmed) {
 
                 //if (req.getParameter("studentSubmitButton") != null) {
                 LinkedList<String[]> data = null; //sätter data lista till 0 så vi kan spara "courses" i den
@@ -117,7 +117,7 @@ public class UserPageServlet extends HttpServlet {
 
     }
 
-    public static void allCourses(UserBean usersBean, HttpServletRequest req, HttpServletResponse
+    protected static void allCourses(UserBean usersBean, HttpServletRequest req, HttpServletResponse
             resp) throws ServletException, IOException {
         LinkedList<String[]> data = null;
         LinkedList<String[]> allCourses = MySQLConnector.getConnector().selectQuery("allCourses", ((UserBean) req.getSession().getAttribute("userBean")).getID());
@@ -128,7 +128,7 @@ public class UserPageServlet extends HttpServlet {
     }
 
 
-    public static void allStudents(UserBean usersBean, HttpServletRequest req, HttpServletResponse
+    protected static void allStudents(UserBean usersBean, HttpServletRequest req, HttpServletResponse
             resp) throws ServletException, IOException {
         LinkedList<String[]> data = null;
         LinkedList<String[]> allStudents = MySQLConnector.getConnector().selectQuery("allStudents", ((UserBean) req.getSession().getAttribute("userBean")).getID());

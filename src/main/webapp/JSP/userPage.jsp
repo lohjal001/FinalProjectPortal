@@ -8,7 +8,7 @@
 
 <body>
 <c:choose>
-    <c:when test="${userBean.userType == 'student' && userBean.stateType == 'confirmed'}">
+    <c:when test="${userBean.userType == 'student' && userBean.privilageType == 'user' && userBean.stateType == 'confirmed'}">
         <%@ include file="fragments/student/studentUserPage.jsp" %>
     </c:when>
     <c:when test="${userBean.userType == 'teacher' && userBean.privilageType == 'user' && userBean.stateType == 'confirmed'}">

@@ -71,10 +71,10 @@ public class LoginServlet extends HttpServlet {
 
                     } else {
                         req.getRequestDispatcher("JSP/login.jsp").forward(req, resp);
+                        req.setAttribute("errorMessage", "Invalid username or password");
                         System.out.println("could not log in");
-                        // TODO
-                        UserBean userBean = new UserBean();
-                        System.out.println(userBean.getStateType());
+                        UserBean usersBean = new UserBean();
+                       // System.out.println(usersBean.getStateType());
                     }
 
                 } else if (userType.equals("Teacher")) {
@@ -85,27 +85,28 @@ public class LoginServlet extends HttpServlet {
 
                             UserBean usersBean = new UserBean("", UserBean.USER_TYPE.teacher, UserBean.PRIVILAGE_TYPE.user, UserBean.STATE_TYPE.confirmed);
                             usersBean.setID(data.get(1)[0]);
-
                             System.out.println("login servlet here2");
 
                             usersBean.setData(data);
                             req.getSession().setAttribute("userBean", usersBean);
                             req.getSession().setMaxInactiveInterval(420);
-
                             System.out.println("login servlet here3");
 
-                            req.getRequestDispatcher("/userPage").forward(req, resp);
+
+                        req.getRequestDispatcher("/userPage").forward(req, resp);
 
                     } else {
+                        req.setAttribute("errorMessage", "Invalid username or password");
                         req.getRequestDispatcher("JSP/login.jsp").forward(req, resp);
                         System.out.println("could not log in");
-                        //add error message
                     }
                     //after user are logged in, sessions should start
 
                 }
             } catch(Exception e){
             System.out.println("error log in"); //add error message
+            req.setAttribute("errorMessage", "Something went wrong, try again");
+
 
         }
     }

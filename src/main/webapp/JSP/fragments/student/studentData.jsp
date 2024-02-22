@@ -1,5 +1,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <div class="table-cont">
+
+<h2>My Courses</h2>
+
     <table>
         <tr>
             <th>Id</th>
@@ -21,6 +24,9 @@
                 </tr>
             </c:forEach>
     </table>
+
+    <h2>My Fellow Students</h2>
+
         <table>
         <tr>
             <th>You</th>

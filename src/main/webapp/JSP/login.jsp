@@ -13,6 +13,9 @@
 
     </div>
 </nav>
+<c:if test="${not empty requestScope.errorMessage}">
+    <p style="color: red;">${requestScope.errorMessage}</p>
+</c:if>
 <main>
     <%@ include file="fragments/loginForm.jsp" %>
 
