@@ -6,5 +6,3 @@ showClassmates;SELECT CONCAT(s.fname, ' ', s.lname) AS student_name,c.name AS co
 
 studentCourseInfo;SELECT c.id, c.name, c.points, c.description, CONCAT(t.fname, ' ', t.lname) AS teacher_name FROM student_course sc LEFT JOIN students s ON sc.student_id = s.id LEFT JOIN courses c ON sc.course_id = c.id LEFT JOIN teacher_course tc ON c.id = tc.course_id LEFT JOIN teachers t ON tc.teacher_id = t.id WHERE s.id ='{0}';gritacademy;localhost;4306;user;user
 teacherCourseInfo;SELECT s.id, s.fname, s.lname, c.id, c.name, c.points, c.description, t.fname AS teacher_fname, t.lname AS teacher_lname FROM student_course sc LEFT JOIN students s ON sc.student_id = s.id LEFT JOIN courses c ON sc.course_id = c.id LEFT JOIN teacher_course tc ON c.id = tc.course_id LEFT JOIN teachers t ON tc.teacher_id = t.id WHERE t.id ='{0}';gritacademy;localhost;4306;user;user
-
-

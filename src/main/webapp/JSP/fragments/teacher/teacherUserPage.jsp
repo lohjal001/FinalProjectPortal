@@ -4,10 +4,6 @@
 <html>
 
 <nav>
-<%@ include file="teacherNavbar.jsp" %>
-</nav>
-
-<nav>
     <%@ include file="teacherNavbar.jsp" %>
 </nav>
 
@@ -23,11 +19,33 @@
 <%@ include file="teacherData.jsp" %>
 
 
+<<<<<<< Updated upstream
+<form id="submitAllTables" action="/userPage" method="post">
+<input type="submit" name="allSCTSubmit" value="Show All Students/Courses/Teachers">
+</form>
+
+<%@ include file="teacherAllStudentsCoursesTeachers.jsp" %>
+
+<form id="submitAllStudents" action="/userPage" method="post">
+<input type="submit" name="allStudents" value="Show All Students">
+</form>
+
+<%@ include file="teacherAllStudents.jsp" %>
+
+
+<form id="submitAllTeachers" action="/userPage" method="post">
+<input type="submit" name="allTeachers" value="Show All Teachers">
+</form>
+
+<%@ include file="teacherAllCourses.jsp" %>
+
+=======
 <%@ include file="teacherAllStudentsCoursesTeachers.jsp" %>
 <%@ include file="teacherAllStudents.jsp" %>
 <%@ include file="teacherAllCourses.jsp" %>
 
 
+>>>>>>> Stashed changes
 
 </body>
 </html>
