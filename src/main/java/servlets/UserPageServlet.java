@@ -69,8 +69,16 @@ public class UserPageServlet extends HttpServlet {
                 //query for which courses this teacher is registered on
                 teachersCourses(usersBean, req, resp);
 
+                //all courses query
+                allCourses(usersBean, req, resp);
+
+                //all courses query
+                allStudents(usersBean, req, resp);
+
                 //query for all students registered and courses and teachers
                 allStudentsCoursesTeachers(usersBean, req, resp);
+
+
 
                 req.getRequestDispatcher("JSP/userPage.jsp").forward(req, resp);
 
@@ -89,7 +97,7 @@ public class UserPageServlet extends HttpServlet {
 
 
     public static void teachersCourses(UserBean usersBean, HttpServletRequest req, HttpServletResponse
-        resp) throws ServletException, IOException {
+            resp) throws ServletException, IOException {
         LinkedList<String[]> dataC = null; //sätter data lista till 0 så vi kan spara "courses" i den
         LinkedList<String[]> courses = MySQLConnector.getConnector().selectQuery("teacherCourseInfo", ((UserBean) req.getSession().getAttribute("userBean")).getID());
         dataC = courses;
@@ -99,28 +107,37 @@ public class UserPageServlet extends HttpServlet {
     }
 
 
-
-
-        public static void allStudentsCoursesTeachers (UserBean usersBean, HttpServletRequest req, HttpServletResponse
-        resp) throws ServletException, IOException {
-            LinkedList<String[]> dataA = null;
-            LinkedList<String[]> allTables = MySQLConnector.getConnector().selectQuery("allStudentsCoursesTeachers", ((UserBean) req.getSession().getAttribute("userBean")).getID());
-            dataA = allTables;
-            req.setAttribute("dataA", dataA);
-            req.setAttribute("allTables", allTables);
-
-        }
-
-        public static void allCourses () {
-
-        }
-
-        public static void allStudents () {
-
-        }
+    public static void allStudentsCoursesTeachers(UserBean usersBean, HttpServletRequest req, HttpServletResponse
+            resp) throws ServletException, IOException {
+        LinkedList<String[]> dataA = null;
+        LinkedList<String[]> allTables = MySQLConnector.getConnector().selectQuery("allStudentsCoursesTeachers", ((UserBean) req.getSession().getAttribute("userBean")).getID());
+        dataA = allTables;
+        req.setAttribute("dataA", dataA);
+        req.setAttribute("allTables", allTables);
 
     }
 
+    public static void allCourses(UserBean usersBean, HttpServletRequest req, HttpServletResponse
+            resp) throws ServletException, IOException {
+        LinkedList<String[]> data = null;
+        LinkedList<String[]> allCourses = MySQLConnector.getConnector().selectQuery("allCourses", ((UserBean) req.getSession().getAttribute("userBean")).getID());
+        data = allCourses;
+        req.setAttribute("data", data);
+        req.setAttribute("allCourses", allCourses);
+
+    }
+
+
+    public static void allStudents(UserBean usersBean, HttpServletRequest req, HttpServletResponse
+            resp) throws ServletException, IOException {
+        LinkedList<String[]> data = null;
+        LinkedList<String[]> allStudents = MySQLConnector.getConnector().selectQuery("allStudents", ((UserBean) req.getSession().getAttribute("userBean")).getID());
+        data = allStudents;
+        req.setAttribute("data", data);
+        req.setAttribute("allStudents", allStudents);
+
+    }
+}
 
 
 

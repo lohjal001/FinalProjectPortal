@@ -1,4 +1,7 @@
 allCourses;SELECT name,points,description FROM courses;gritacademy;localhost;4306;userSELECT;user
+allStudents;SELECT * FROM students;gritacademy;localhost;4306;userSELECT;user
+
+
 loginStudent;SELECT * FROM students WHERE username ='{0}' AND password ='{1}';gritacademy;localhost;4306;userSELECT;user
 loginTeacher;SELECT * FROM teachers WHERE username ='{0}' AND password ='{1}';gritacademy;localhost;4306;userSELECT;user
 studentCourseInfo;SELECT s.id, s.fname, s.lname, c.id, c.name, c.points, c.description, t.fname AS teacher_fname, t.lname AS teacher_lname FROM student_course sc LEFT JOIN students s ON sc.student_id = s.id LEFT JOIN courses c ON sc.course_id = c.id LEFT JOIN teacher_course tc ON c.id = tc.course_id LEFT JOIN teachers t ON tc.teacher_id = t.id WHERE s.id = '{0}';gritacademy;localhost;4306;userSELECT;user
