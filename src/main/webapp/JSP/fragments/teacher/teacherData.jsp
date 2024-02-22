@@ -3,11 +3,15 @@
     <table>
         <tr>
             <th>Id</th>
-            <th>Courses</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Course Id</th>
+            <th>Course</th>
             <th>YHP</th>
             <th>Description</th>
-             <th>student</th>
-            <th>teachers</th>
+             <th>Teacher First Name</th>
+            <th>Teacher Last Name</th>
+
 
 
         </tr>
@@ -23,6 +27,8 @@
                         <td>${courseData[6]}</td>
                         <td>${courseData[7]}</td>
                         <td>${courseData[8]}</td>
+                        <td>${courseData[9]}</td>
+
 
 
                 </tr>

@@ -3,9 +3,12 @@
 <!DOCTYPE html>
 <html>
 
+<nav>
+<%@ include file="teacherNavbar.jsp" %>
+</nav>
 
 <body>
-<p>"heyyyyy teacher user page"</p>
+<h1>My Teacher Page</h1>
 
 <%@ include file="teacherData.jsp" %>
 
