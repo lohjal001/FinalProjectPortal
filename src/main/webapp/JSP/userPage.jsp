@@ -15,7 +15,7 @@
         <%@ include file="fragments/teacher/teacherUserPage.jsp" %>
     </c:when>
     <c:when test="${userBean.userType == 'teacher' && userBean.privilageType == 'admin' && userBean.stateType == 'confirmed'}">
-        <%@ include file="fragments/teacher/teacherAdminPage.jsp" %>
+        <%@ include file="fragments/admin/adminUserPage.jsp" %>
     </c:when>
 </c:choose>
 <nav>

@@ -4,11 +4,11 @@
 <html>
 
 
-<body>
-<p>"heyyyyy teacher user page"</p>
+<nav>
+    <%@ include file="teacherNavbar.jsp" %>
+</nav>
+
+<h1>"Teacher user page"</h1>
 
 
-
-
-</body>
 </html>
