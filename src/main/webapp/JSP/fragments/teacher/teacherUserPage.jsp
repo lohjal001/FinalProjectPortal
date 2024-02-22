@@ -7,6 +7,7 @@
 <body>
 <p>"heyyyyy teacher user page"</p>
 
+<%@ include file="teacherData.jsp" %>
 
 
 
