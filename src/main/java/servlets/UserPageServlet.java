@@ -1,5 +1,6 @@
 package servlets;
 
+import com.sun.tools.javac.comp.Todo;
 import models.MySQLConnector;
 import models.UserBean;
 
@@ -38,6 +39,20 @@ public class UserPageServlet extends HttpServlet {
                 LinkedList<String[]> data = null; //sätter data lista till 0 så vi kan spara "courses" i den
                 LinkedList<String[]> courses = MySQLConnector.getConnector().selectQuery("EnrolledCoursesOverview", ((UserBean) req.getSession().getAttribute("userBean")).getID());
 
+
+                //String dataPoint = req.getParameter("dataPoint");
+                LinkedList<String[]> dataS = null;
+                LinkedList<String[]> classmates = MySQLConnector.getConnector().selectQuery("ClassMates", ((UserBean) req.getSession().getAttribute("userBean")).getID());
+                System.out.println(classmates);
+                for (String[] students : classmates) {
+                    for (String studentInfo : students) {
+                        System.out.print(studentInfo+ " ");
+                    }
+                    System.out.println(); //  to the next line for each course
+                }
+                data = classmates;
+
+
                 //TO CHECK IF DATA PRINTS OUT... heeyyy it doesnt....
                 for (String[] course : courses) {
                     for (String courseInfo : course) {
@@ -49,6 +64,8 @@ public class UserPageServlet extends HttpServlet {
 
                 req.setAttribute("data", data);
                 req.setAttribute("courses", courses);
+                req.setAttribute("dataS", dataS);
+                req.setAttribute("classmates", classmates);
                // usersBean.setData(courses);
                 req.getRequestDispatcher("JSP/userPage.jsp").forward(req, resp);
 

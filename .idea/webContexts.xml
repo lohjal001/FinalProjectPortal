@@ -5,6 +5,7 @@
       <map>
         <entry key="file://$PROJECT_DIR$/src/main/webapp/JSP/fragments/admin/registerForm.jsp" value="file://$PROJECT_DIR$/src/main/webapp/JSP/fragments/admin" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/JSP/fragments/navbar.jsp" value="file://$PROJECT_DIR$/src/main/webapp/JSP/fragments" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/JSP/fragments/student/studentNavbar.jsp" value="file://$PROJECT_DIR$/src/main/webapp/JSP/fragments/student" />
       </map>
     </option>
   </component>

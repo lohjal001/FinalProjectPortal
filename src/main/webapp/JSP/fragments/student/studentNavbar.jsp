@@ -16,8 +16,10 @@
                                 <option value="${dataPoint[0]}">${dataPoint[1]}</option>
                             </c:forEach>
                         </select>
-                        <input type="submit" id="studentSubmit" name="studentSubmitButton" value="Show My Courses">
+                        <input type="submit" id="showClassmates" name="studentSubmitButton" value="Show My Classmates">
+
                         <button onclick=location.href='/userPage'>Go Back</button>
+                        <input type="button" value="Log Out" name="logOut">
                     </form>
         </nav>
 </navbar>
