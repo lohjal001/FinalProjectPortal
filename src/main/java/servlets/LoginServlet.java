@@ -61,12 +61,12 @@ public class LoginServlet extends HttpServlet {
                         System.out.println("login servlet here2");
 
                         usersBean.setData(data);
-                        req.getSession().setAttribute("userBean", usersBean);
-                        req.getSession().setMaxInactiveInterval(420);
+                        req.getSession().setAttribute("userBean", usersBean); //setting attribute to the session
+                        req.getSession().setMaxInactiveInterval(420); //getting seassion, setting time
 
                         System.out.println("login servlet here3");
 
-                        req.getRequestDispatcher("/userPage").forward(req, resp);
+                        req.getRequestDispatcher("/userPage").forward(req, resp); //to jsp
 
 
                     } else {

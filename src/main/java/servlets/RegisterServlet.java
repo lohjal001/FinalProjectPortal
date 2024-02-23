@@ -40,7 +40,6 @@ public class RegisterServlet extends HttpServlet {
 
             if (!stateType.equals("confirmed") && !userType.equals("teacher")) {
 
-                    //make error message
                     req.setAttribute("errorMessage", "you dont have privileges to perform this action");
                     req.getRequestDispatcher("JSP/login.jsp").forward(req, resp);
 
@@ -55,7 +54,7 @@ public class RegisterServlet extends HttpServlet {
 
                         usersBean.setData(data);
                         req.getSession().setAttribute("UserBean", usersBean);
-                        System.out.println("new student was added to the database");
+                        System.out.println("a new student was added to the database");
 
                 } else {
                     System.out.println("NOPE - student was not added to database");

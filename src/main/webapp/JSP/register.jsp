@@ -12,7 +12,7 @@
 <body>
 <nav>
 
-        <%@ include file="fragments/navbar.jsp" %>
+        <%@ include file="fragments/admin/registerNavbar.jsp" %>
 
 
 </nav>

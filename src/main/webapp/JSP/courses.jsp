@@ -22,11 +22,11 @@
         <th>Description</th>
     </tr>
     </thead>
-<c:forEach items="${UserBean.data }" var="dataPoint">
+<c:forEach items="${UserBean.data }" var="coursesData">
     <tr>
-        <td>${dataPoint[0]}</td>
-        <td>${dataPoint[1]}</td>
-        <td>${dataPoint[2]}</td>
+        <td>${coursesData[0]}</td>
+        <td>${coursesData[1]}</td>
+        <td>${coursesData[2]}</td>
     </tr>
 </c:forEach>
  </table>

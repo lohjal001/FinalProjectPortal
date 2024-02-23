@@ -14,8 +14,6 @@ public class IndexServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //System.out.println();
-        PrintWriter out = resp.getWriter();
-        out.println("<html><body style='background-image: url(\"/forest.jpg\"); background-size: cover; background-position: center; background-repeat: no-repeat;></body></html>");
         req.getRequestDispatcher("JSP/index.jsp").forward(req,resp);
     }
 
