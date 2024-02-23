@@ -57,7 +57,7 @@ color: black;
 }
 
 a:hover {
-color: #c79048;
+color: #99adb5;
 }
 
 .bg-white {
@@ -79,7 +79,7 @@ text-align:center;
 }
 
 input[type=submit]:hover {
-background-color: #E0E6E8;
+background-color: #80adb5;
 }
 
 input[type=text]:focus {
